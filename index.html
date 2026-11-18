@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seksiaki – edukacja bez tabu</title>
+<meta name="description" content="Rzetelna edukacja seksualna dla młodzieży: zgoda, granice, ciało i zdrowie.">
+<meta name="theme-color" content="#2A1442">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Seksiaki">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" id="ati" href="data:,">
+<link rel="manifest" id="mf">
+<style>
+:root{--bg:#FFF6FA;--card:#fff;--ink:#2A1442;--mute:#6B5A7D;--pink:#F0306E;--pinkd:#C41F55;--mint:#0FA37F;--mintbg:#DDF7EE;--bad:#C2253A;--badbg:#FDE3E6;--sun:#FFD25E;--line:#EBDDF0;--hero1:#2A1442;--hero2:#5B2A8C;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#170C26;--card:#241238;--ink:#F7ECFF;--mute:#B9A6CC;--pink:#FF5C8F;--pinkd:#FF7FA8;--mint:#4FE3B9;--mintbg:#123B34;--bad:#FF8A98;--badbg:#45172A;--line:#3A2356;--hero1:#0F0719;--hero2:#4A1F78}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#170C26;--card:#241238;--ink:#F7ECFF;--mute:#B9A6CC;--pink:#FF5C8F;--pinkd:#FF7FA8;--mint:#4FE3B9;--mintbg:#123B34;--bad:#FF8A98;--badbg:#45172A;--line:#3A2356;--hero1:#0F0719;--hero2:#4A1F78}
+*,*:before,*:after{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{min-height:100vh}
+.app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+.view{display:none;flex:1;flex-direction:column;padding:20px 18px 32px}
+.view.on{display:flex}
+h1,h2,h3{line-height:1.15;margin:0 0 .5em;letter-spacing:-.02em}
+p{margin:0 0 1em}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.logo{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-size:1.5rem;letter-spacing:-.03em}
+.logo i{width:38px;height:38px;border-radius:14px 14px 14px 4px;background:var(--pink);display:grid;place-items:center;color:#fff;font-style:normal;font-size:1.3rem;transform:rotate(-6deg)}
+#home{padding:0;background:linear-gradient(160deg,var(--hero1),var(--hero2));color:#fff;justify-content:space-between}
+#home .in{padding:26px 22px 28px;display:flex;flex-direction:column;flex:1}
+#home .logo{color:#fff}
+#home h1{font-size:clamp(2.1rem,9vw,3rem);font-weight:900;margin-top:15vh}
+#home h1 span{display:inline-block;background:var(--sun);color:#2A1442;padding:0 .2em;border-radius:.2em;transform:rotate(-2deg)}
+#home p.lead{font-size:1.1rem;opacity:.92;max-width:34ch}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 26px}
+.pills b{font-weight:700;font-size:.85rem;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25)}
+.btn{display:block;width:100%;border:0;border-radius:16px;padding:16px 20px;font-weight:800;font-size:1.05rem;background:var(--pink);color:#fff;box-shadow:0 5px 0 var(--pinkd);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--pinkd)}
+.btn.alt{background:transparent;color:var(--ink);box-shadow:none;border:2px solid var(--line);margin-top:10px}
+.fine{font-size:.8rem;opacity:.75;margin-top:18px;margin-bottom:0}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.back,.theme{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-weight:700}
+.mod{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px}
+.mod:not([disabled]):hover{border-color:var(--pink)}
+.mod .ic{flex:none;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:1.6rem}
+.mod h3{margin:0 0 2px;font-size:1.05rem}
+.mod small{color:var(--mute);display:block;line-height:1.35}
+.mod[disabled]{opacity:.55;cursor:default}
+.tag{font-size:.72rem;font-weight:700;background:var(--sun);color:#2A1442;border-radius:99px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.install{display:flex;align-items:center;gap:12px;background:var(--mintbg);border-radius:18px;padding:14px 16px;margin-bottom:14px}
+.install[hidden]{display:none}
+.install .ic{font-size:1.6rem}
+.install div{flex:1;font-size:.92rem;line-height:1.4}
+.install button{border:0;background:var(--mint);color:#fff;font-weight:800;border-radius:12px;padding:10px 14px}
+.install button[hidden]{display:none}
+.lesson h2{font-size:1.7rem}
+.meta{color:var(--mute);font-size:.9rem}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0}
+.box h3{font-size:1.05rem;margin-bottom:.3em}
+.box p{margin:0;color:var(--mute)}
+.box.key{border-left:6px solid var(--pink)}
+.box.tip{background:var(--mintbg);border-color:transparent}
+.box.tip p{color:var(--ink)}
+.help{font-size:.88rem;color:var(--mute);background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:12px 14px;margin-top:6px}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:6px}
+.bar div{height:100%;width:0;background:var(--pink);border-radius:99px;transition:width .35s}
+.count{font-size:.85rem;color:var(--mute);margin-bottom:16px}
+.q{font-size:1.35rem;font-weight:800;margin-bottom:16px;line-height:1.25}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:10px;font-weight:600}
+.opt.ok{border-color:var(--mint);background:var(--mintbg)}
+.opt.no{border-color:var(--bad);background:var(--badbg);animation:shake .3s}
+.opt.dim{opacity:.55}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.fb{display:none;border-radius:16px;padding:14px 16px;margin:6px 0 14px}
+.fb.show{display:block}
+.fb.good{background:var(--mintbg)}
+.fb.bad{background:var(--badbg)}
+.fb strong{display:block;margin-bottom:2px}
+.score{font-size:4rem;font-weight:900;color:var(--pink);margin:20px 0 0;text-align:center}
+#res{text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+a.btn{text-decoration:none}.btn.mint{background:var(--mint);box-shadow:0 5px 0 rgba(0,0,0,.25);color:#fff}.btn.mint:active{box-shadow:0 1px 0 rgba(0,0,0,.25)}
+a.mod{text-decoration:none;color:inherit}a.mod[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="app">
+
+<section class="view on" id="home">
+  <div class="in">
+    <div class="logo"><i>💬</i>Seksiaki</div>
+    <h1>Edukacja seksualna<br>bez <span>tabu</span>.</h1>
+    <p class="lead">Rzetelna wiedza o ciele, relacjach i zgodzie. Bez wstydu, bez moralizowania, bez internetowych mitów.</p>
+    <div class="pills"><b>🧠 Fakty, nie plotki</b><b>🤝 Zgoda i granice</b><b>🛡️ Bezpiecznie</b></div>
+    <div style="margin-top:auto">
+      <button class="btn" data-go="menu">Zaczynam</button>
+      <p class="fine">Platforma edukacyjna dla młodzieży. Nie zastępuje porady lekarza ani psychologa.</p>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="menu">
+  <div class="top"><div class="logo" style="font-size:1.2rem"><i style="width:30px;height:30px;font-size:1rem;border-radius:11px 11px 11px 3px">💬</i>Seksiaki</div><button class="theme" id="themeBtn" aria-label="Zmień motyw">🌓</button></div>
+  <div class="install" id="installBox" hidden><span class="ic">📲</span><div id="installTxt"></div><button id="installBtn" hidden>Zainstaluj</button></div>
+  <h2>Wybierz moduł</h2>
+  <p style="color:var(--mute)">Każdy moduł to krótka lekcja i quiz. Zajmie Ci to kilka minut.</p>
+  <div id="modList"></div>
+  <a class="mod" id="menuSurvey" href="#" target="_blank" rel="noopener" hidden><span class="ic" style="background:#F9D9E6">📝</span><span><h3>Powiedz nam, co myślisz</h3><small>Anonimowa ankieta · ok. 1 min</small></span></a>
+  <div class="help"><b>Potrzebujesz z kimś porozmawiać?</b> Telefon zaufania dla dzieci i młodzieży: <b>116 111</b> (bezpłatny). W nagłej sytuacji dzwoń na <b>112</b>.</div>
+</section>
+
+<section class="view lesson" id="lesson">
+  <div class="top"><button class="back" data-go="menu">← Moduły</button><span class="meta" id="lMeta"></span></div>
+  <h2 id="lTitle"></h2>
+  <div id="lBody"></div>
+  <button class="btn" id="toQuiz" style="margin-top:14px">Sprawdź wiedzę w quizie</button>
+</section>
+
+<section class="view" id="quiz">
+  <div class="top"><button class="back" id="quitQuiz">← Wyjdź</button></div>
+  <div class="bar"><div id="prog"></div></div>
+  <div class="count" id="qCount"></div>
+  <div class="q" id="qText"></div>
+  <div id="qOpts"></div>
+  <div class="fb" id="fb" role="status" aria-live="polite"><strong id="fbH"></strong><span id="fbT"></span></div>
+  <button class="btn" id="next" style="display:none">Dalej</button>
+</section>
+
+<section class="view" id="res">
+  <div class="score" id="rScore"></div>
+  <h2 id="rTitle" style="margin-top:8px"></h2>
+  <p id="rText" style="color:var(--mute)"></p>
+  <div class="box tip" id="surveyBox" style="text-align:left;margin:18px 0 20px">
+    <h3>Twoja opinia się liczy</h3>
+    <p style="margin-bottom:14px">Ankieta jest anonimowa i zajmuje około minuty. Dzięki niej Seksiaki będą lepsze.</p>
+    <a class="btn mint" id="surveyLink" href="#" target="_blank" rel="noopener">Powiedz nam, co myślisz – wypełnij anonimową ankietę</a>
+  </div>
+  <button class="btn" id="retry">Spróbuj jeszcze raz</button>
+  <button class="btn alt" data-go="menu">Wróć do modułów</button>
+</section>
+
+</div>
+<script type="application/json" id="content-data">
+{
+ "version": 1,
+ "surveyUrl": "https://TWOJ-LINK-DO-GOOGLE-FORMS",
+ "modules": [
+  {
+   "id": "zgoda",
+   "title": "Granice i zgoda",
+   "icon": "🤝",
+   "iconBg": "var(--mintbg)",
+   "status": "active",
+   "subtitle": "Czym jest zgoda i jak rozmawiać o granicach",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Zgoda to jasne „tak” od drugiej osoby: na konkretną rzecz, w konkretnym momencie. Dotyczy pocałunków, przytulania, dotyku, wysyłania zdjęć i wszystkiego, co jest intymne."
+    },
+    {
+     "type": "key",
+     "title": "Dobra zgoda jest:",
+     "html": "<b>Dobrowolna<\/b> – bez presji, szantażu i manipulacji.<br><b>Świadoma<\/b> – osoba wie, na co się zgadza, i jest w stanie zdecydować (alkohol i inne substancje to ograniczają).<br><b>Konkretna<\/b> – „tak” na jedną rzecz nie oznacza „tak” na wszystko.<br><b>Odwołalna<\/b> – można zmienić zdanie w każdej chwili, także w trakcie.<br><b>Entuzjastyczna<\/b> – nie „no dobra, niech będzie”, tylko szczere „chcę”."
+    },
+    {
+     "type": "box",
+     "title": "Brak sprzeciwu to nie zgoda",
+     "html": "Cisza, zamrożenie albo brak walki nie oznaczają „tak”. Jeśli nie jesteś pewien lub pewna, zapytaj. To nie jest niezręczne, to jest dojrzałe."
+    },
+    {
+     "type": "tip",
+     "title": "Jak mówić o granicach?",
+     "html": "Mów o sobie i krótko: „Na to jeszcze nie jestem gotowy/gotowa”, „Podoba mi się to, a tamto nie”, „Zatrzymajmy się”. Masz prawo do swoich granic i obowiązek szanować cudze."
+    },
+    {
+     "type": "box",
+     "title": "Prawo w Polsce",
+     "html": "Wiek zgody wynosi 15 lat, ale nie zwalnia to nikogo z obowiązku uzyskania prawdziwej zgody. Zmuszanie do czynności seksualnych oraz wykorzystanie czyjejś zależności lub bezradności to przestępstwo."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Ktoś mówi „tak” na pocałunek. Co to oznacza?",
+     "options": [
+      "Że zgadza się też na wszystko inne",
+      "Że zgadza się na pocałunek, a o resztę trzeba zapytać",
+      "Że nie może już zmienić zdania"
+     ],
+     "answer": 1,
+     "explanation": "Zgoda jest konkretna. „Tak” na jedną rzecz dotyczy tylko tej rzeczy."
+    },
+    {
+     "q": "Ktoś w trakcie intymnej sytuacji mówi „stop”. Co robisz?",
+     "options": [
+      "Przestaję od razu",
+      "Pytam „na pewno?” i próbuję przekonać",
+      "Kończę po chwili, bo już zaczęliśmy"
+     ],
+     "answer": 0,
+     "explanation": "Zgodę można odwołać w każdej chwili. „Stop” oznacza stop, bez negocjacji."
+    },
+    {
+     "q": "Czy osoba, która jest bardzo pijana, może dać ważną zgodę?",
+     "options": [
+      "Tak, jeśli się uśmiecha",
+      "Tak, jeśli sama zaczęła",
+      "Nie, bo nie jest w stanie świadomie zdecydować"
+     ],
+     "answer": 2,
+     "explanation": "Alkohol i inne substancje odbierają zdolność do świadomej decyzji. W takiej sytuacji zgody nie ma."
+    },
+    {
+     "q": "Co z milczeniem i brakiem protestu?",
+     "options": [
+      "To nie jest zgoda",
+      "To zgoda domyślna",
+      "To zgoda, jeśli jesteście parą"
+     ],
+     "answer": 0,
+     "explanation": "Zgoda to wyraźne „tak”, a nie brak „nie”. Bycie w związku niczego tu nie zmienia."
+    }
+   ]
+  },
+  {
+   "id": "anatomia",
+   "title": "Anatomia bez tabu",
+   "icon": "🧍",
+   "iconBg": "#FFE9B8",
+   "status": "active",
+   "subtitle": "Jak działa ciało i kiedy iść do lekarza",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Znajomość własnego ciała to podstawa zdrowia i komfortu. Używanie właściwych nazw nie jest wulgarne, tylko pomaga zrozumieć, co się dzieje, i opisać to lekarzowi."
+    },
+    {
+     "type": "key",
+     "title": "Każde ciało jest inne",
+     "html": "Kształt, rozmiar, kolor i proporcje bywają bardzo różne, także w przypadku narządów płciowych i piersi. To naturalna różnorodność, a filmy z internetu nie są wzorem normy."
+    },
+    {
+     "type": "box",
+     "title": "Dojrzewanie ma własne tempo",
+     "html": "U jednych osób zmiany zaczynają się wcześniej, u innych później. Obejmują wzrost, owłosienie, zmianę głosu, pierwszą miesiączkę czy pierwsze polucje. Porównywanie się z rówieśnikami nic nie mówi o zdrowiu."
+    },
+    {
+     "type": "box",
+     "title": "Cykl miesiączkowy",
+     "html": "W pierwszych latach po pierwszej miesiączce cykl bywa nieregularny. Warto notować daty w kalendarzu lub aplikacji, bo to ułatwia zauważenie, co jest u Ciebie typowe."
+    },
+    {
+     "type": "tip",
+     "title": "Kiedy iść do lekarza?",
+     "html": "Gdy pojawia się ból, który nie mija, nietypowa wydzielina lub zapach, swędzenie, zmiany skórne, guzek, bardzo bolesne lub bardzo obfite miesiączki albo gdy po prostu masz pytania. Możesz zgłosić się do ginekologa, urologa lub lekarza rodzinnego. Nie musisz mieć „poważnego” powodu."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Czy to normalne, że ciała różnią się wyglądem?",
+     "options": [
+      "Nie, istnieje jeden prawidłowy wzór",
+      "Tak, różnorodność jest naturalna",
+      "Tylko u dorosłych"
+     ],
+     "answer": 1,
+     "explanation": "Ludzkie ciała bardzo się różnią. Zdjęcia z internetu często są wyselekcjonowane lub edytowane."
+    },
+    {
+     "q": "Pierwsza miesiączka była niedawno, a cykl jest nieregularny. Co to zwykle oznacza?",
+     "options": [
+      "To często normalne w pierwszych latach",
+      "To zawsze choroba",
+      "To znaczy, że coś jest ze mną nie tak"
+     ],
+     "answer": 0,
+     "explanation": "Cykl dopiero się stabilizuje. Jeśli jednak coś Cię niepokoi, warto porozmawiać z lekarzem."
+    },
+    {
+     "q": "Kiedy warto zgłosić się do lekarza?",
+     "options": [
+      "Tylko gdy jest naprawdę źle",
+      "Gdy coś niepokoi lub masz pytania",
+      "Nigdy, samo przejdzie"
+     ],
+     "answer": 1,
+     "explanation": "Pytania i niepokojące objawy są dobrym powodem. Wcześniejsza reakcja zwykle ułatwia leczenie."
+    }
+   ]
+  },
+  {
+   "id": "ochrona",
+   "title": "Ochrona i zdrowie",
+   "icon": "🛡️",
+   "status": "soon",
+   "subtitle": "Antykoncepcja, profilaktyka, badania"
+  },
+  {
+   "id": "internet",
+   "title": "Internet i relacje",
+   "icon": "📱",
+   "status": "soon",
+   "subtitle": "Prywatność, zdjęcia, presja rówieśnicza"
+  }
+ ]
+}
+</script>
+<script>
+var CONTENT=null,cur=0,qi=0,score=0,locked=false;
+var $=function(id){return document.getElementById(id)};
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function show(id){document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});$(id).classList.add('on');window.scrollTo(0,0)}
+document.addEventListener('click',function(e){
+  var g=e.target.closest('[data-go]');if(g){show(g.dataset.go);return}
+  var m=e.target.closest('[data-mod]');if(m&&!m.disabled){openLesson(+m.dataset.mod)}
+});
+
+/* ---- treści z content.json ---- */
+function loadContent(){
+  try{
+    CONTENT=JSON.parse($('content-data').textContent);
+    if(!CONTENT||!Array.isArray(CONTENT.modules))throw new Error('format');
+    renderMenu();
+    var u=CONTENT.surveyUrl,ms=$('menuSurvey');
+    if(u){ms.href=u;ms.hidden=false}else{ms.hidden=true}
+  }catch(err){
+    $('modList').innerHTML='<div class="box"><h3>Nie udało się wczytać treści</h3><p>Odśwież stronę. Jeśli problem wraca, daj nam znać.</p></div>';
+  }
+}
+function renderMenu(){
+  var box=$('modList');box.innerHTML='';
+  CONTENT.modules.forEach(function(m,i){
+    var soon=m.status==='soon',b=document.createElement('button');
+    b.className='mod';
+    if(soon)b.disabled=true;else b.dataset.mod=i;
+    var ic=document.createElement('span');ic.className='ic';ic.style.background=m.iconBg||'var(--line)';ic.textContent=m.icon||'📘';
+    var tx=document.createElement('span'),h=document.createElement('h3'),sm=document.createElement('small');
+    h.textContent='Moduł '+(i+1)+': '+m.title;
+    if(soon){var tg=document.createElement('span');tg.className='tag';tg.textContent='wkrótce';h.appendChild(document.createTextNode(' '));h.appendChild(tg)}
+    sm.textContent=(m.subtitle||'')+(!soon&&m.time?' · '+m.time:'');
+    tx.appendChild(h);tx.appendChild(sm);b.appendChild(ic);b.appendChild(tx);box.appendChild(b);
+  });
+}
+function lessonHTML(blocks){
+  return (blocks||[]).map(function(b){
+    var t=b.title?'<h3>'+esc(b.title)+'</h3>':'';
+    if(b.type==='key')return '<div class="box key">'+t+'<p>'+b.html+'</p></div>';
+    if(b.type==='tip')return '<div class="box tip">'+t+'<p>'+b.html+'</p></div>';
+    if(b.type==='box')return '<div class="box">'+t+'<p>'+b.html+'</p></div>';
+    return '<p>'+b.html+'</p>';
+  }).join('');
+}
+function openLesson(i){
+  cur=i;var m=CONTENT.modules[i];
+  $('lMeta').textContent=m.time||'';
+  $('lTitle').textContent='Moduł '+(i+1)+': '+m.title;
+  $('lBody').innerHTML=lessonHTML(m.lesson);
+  $('toQuiz').style.display=(m.quiz&&m.quiz.length)?'block':'none';
+  show('lesson');
+}
+
+/* ---- quiz ---- */
+$('toQuiz').onclick=function(){qi=0;score=0;show('quiz');renderQ()};
+$('quitQuiz').onclick=function(){show('lesson')};
+function renderQ(){
+  var qs=CONTENT.modules[cur].quiz,q=qs[qi];locked=false;
+  $('prog').style.width=(qi/qs.length*100)+'%';
+  $('qCount').textContent='Pytanie '+(qi+1)+' z '+qs.length;
+  $('qText').textContent=q.q;
+  $('fb').className='fb';$('next').style.display='none';
+  var box=$('qOpts');box.innerHTML='';
+  q.options.forEach(function(t,k){var b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=function(){answer(k)};box.appendChild(b)});
+}
+function answer(k){
+  if(locked)return;locked=true;
+  var qs=CONTENT.modules[cur].quiz,q=qs[qi],ok=k===q.answer,btns=$('qOpts').children;
+  if(ok)score++;
+  for(var i=0;i<btns.length;i++){
+    if(i===q.answer)btns[i].classList.add('ok');
+    else if(i===k)btns[i].classList.add('no');
+    else btns[i].classList.add('dim');
+  }
+  $('fbH').textContent=ok?'✅ Dokładnie!':'❌ Nie do końca.';
+  $('fbT').textContent=q.explanation||'';
+  $('fb').className='fb show '+(ok?'good':'bad');
+  $('next').textContent=qi===qs.length-1?'Zobacz wynik':'Dalej';
+  $('next').style.display='block';
+  $('prog').style.width=((qi+1)/qs.length*100)+'%';
+}
+$('next').onclick=function(){
+  var n=CONTENT.modules[cur].quiz.length;
+  if(qi<n-1){qi++;renderQ()}else{finish(n)}
+};
+function finish(n){
+  $('rScore').textContent=score+'/'+n;
+  var all=score===n,half=score>=n/2;
+  $('rTitle').textContent=all?'Super robota! 🎉':half?'Dobrze Ci idzie 👍':'Warto wrócić do lekcji 📖';
+  $('rText').textContent=all?'Masz solidną wiedzę z tego modułu. Przejdź do kolejnego.':half?'Większość odpowiedzi jest trafiona. Przejrzyj lekcję jeszcze raz i spróbuj ponownie.':'To nic złego, wiedza przychodzi z czasem. Przeczytaj lekcję jeszcze raz i spróbuj znowu.';
+  var url=CONTENT.surveyUrl;
+  $('surveyBox').hidden=!url;
+  if(url)$('surveyLink').href=url;
+  show('res');
+}
+$('retry').onclick=function(){qi=0;score=0;show('quiz');renderQ()};
+$('themeBtn').onclick=function(){
+  var r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+};
+loadContent();
+
+/* ===== PWA ===== */
+var deferredPrompt=null;
+var isStandalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+
+function makeIcon(size){
+  var c=document.createElement('canvas');c.width=c.height=size;
+  var x=c.getContext('2d'),s=size;
+  x.fillStyle='#2A1442';x.fillRect(0,0,s,s);
+  x.save();x.translate(s/2,s/2);x.rotate(-6*Math.PI/180);
+  var w=s*.5,h=s*.5,r=s*.12,rb=s*.03,l=-w/2,t=-h/2;
+  x.beginPath();
+  x.moveTo(l+r,t);x.arcTo(l+w,t,l+w,t+h,r);x.arcTo(l+w,t+h,l,t+h,r);
+  x.arcTo(l,t+h,l,t,rb);x.arcTo(l,t,l+w,t,r);x.closePath();
+  x.fillStyle='#F0306E';x.fill();
+  x.fillStyle='#fff';x.font='900 '+(s*.3)+'px "Trebuchet MS",Arial,sans-serif';
+  x.textAlign='center';x.textBaseline='middle';x.fillText('S',0,s*.01);
+  x.restore();
+  return c.toDataURL('image/png');
+}
+
+function setupManifest(){
+  if(location.protocol.indexOf('http')!==0)return;
+  try{
+    var i192=makeIcon(192),i512=makeIcon(512);
+    $('ati').href=makeIcon(180);
+    var base=location.origin+location.pathname;
+    var manifest={
+      name:'Seksiaki – edukacja bez tabu',short_name:'Seksiaki',
+      description:'Rzetelna edukacja seksualna dla młodzieży.',
+      lang:'pl',start_url:base,scope:base.replace(/[^\/]*$/,''),
+      display:'standalone',orientation:'portrait',
+      background_color:'#2A1442',theme_color:'#2A1442',
+      icons:[
+        {src:i192,sizes:'192x192',type:'image/png',purpose:'any maskable'},
+        {src:i512,sizes:'512x512',type:'image/png',purpose:'any maskable'}
+      ]
+    };
+    $('mf').href=URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/manifest+json'}));
+  }catch(err){console.warn('Manifest PWA niedostępny:',err)}
+}
+
+function showInstallBox(){
+  if(isStandalone)return;
+  var box=$('installBox'),txt=$('installTxt'),btn=$('installBtn');
+  if(deferredPrompt){
+    txt.innerHTML='<b>Zainstaluj Seksiaki</b><br>Dodaj aplikację do ekranu głównego telefonu.';
+    btn.hidden=false;box.hidden=false;
+  }else if(isIOS){
+    txt.innerHTML='<b>Dodaj do ekranu głównego</b><br>W Safari dotknij ikony udostępniania, a potem „Do ekranu początkowego”.';
+    btn.hidden=true;box.hidden=false;
+  }
+}
+
+window.addEventListener('beforeinstallprompt',function(e){
+  e.preventDefault();deferredPrompt=e;showInstallBox();
+});
+window.addEventListener('appinstalled',function(){
+  deferredPrompt=null;$('installBox').hidden=true;
+});
+$('installBtn').onclick=function(){
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(function(){deferredPrompt=null;$('installBox').hidden=true});
+};
+
+setupManifest();
+showInstallBox();
+</script>
+</body>
+</html>
