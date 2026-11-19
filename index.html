@@ -12,6 +12,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" id="ati" href="data:,">
 <link rel="manifest" id="mf">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2064%2064%27%3E%3Crect%20width=%2764%27%20height=%2764%27%20rx=%2716%27%20fill=%27%232A1442%27/%3E%3Cpath%20d=%27M12%2018a6%206%200%200%201%206-6h28a6%206%200%200%201%206%206v18a6%206%200%200%201-6%206H28l-10%209v-9a6%206%200%200%201-6-6z%27%20fill=%27%23F0306E%27/%3E%3Ccircle%20cx=%2724%27%20cy=%2727%27%20r=%273%27%20fill=%27%23fff%27/%3E%3Ccircle%20cx=%2732%27%20cy=%2727%27%20r=%273%27%20fill=%27%23fff%27/%3E%3Ccircle%20cx=%2740%27%20cy=%2727%27%20r=%273%27%20fill=%27%23fff%27/%3E%3C/svg%3E">
 <style>
 :root{--bg:#FFF6FA;--card:#fff;--ink:#2A1442;--mute:#6B5A7D;--pink:#F0306E;--pinkd:#C41F55;--mint:#0FA37F;--mintbg:#DDF7EE;--bad:#C2253A;--badbg:#FDE3E6;--sun:#FFD25E;--line:#EBDDF0;--hero1:#2A1442;--hero2:#5B2A8C;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#170C26;--card:#241238;--ink:#F7ECFF;--mute:#B9A6CC;--pink:#FF5C8F;--pinkd:#FF7FA8;--mint:#4FE3B9;--mintbg:#123B34;--bad:#FF8A98;--badbg:#45172A;--line:#3A2356;--hero1:#0F0719;--hero2:#4A1F78}}
@@ -83,14 +84,26 @@ button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 a.btn{text-decoration:none}.btn.mint{background:var(--mint);box-shadow:0 5px 0 rgba(0,0,0,.25);color:#fff}.btn.mint:active{box-shadow:0 1px 0 rgba(0,0,0,.25)}
 a.mod{text-decoration:none;color:inherit}a.mod[hidden]{display:none}
+[hidden]{display:none!important}
+a.logo{color:inherit;text-decoration:none}
+.top{padding-right:112px}
+#qx{position:fixed;z-index:50;top:calc(env(safe-area-inset-top,0px) + 10px);right:12px;border:1px solid var(--line);background:var(--card);color:var(--mute);border-radius:99px;padding:6px 12px;font-size:.8rem;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.call{display:block;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:inherit}
+.call b{display:block;font-size:1.5rem;color:var(--pink);letter-spacing:-.02em}
+.call span{color:var(--mute);font-size:.92rem;line-height:1.4}
+.box ul{margin:0;padding-left:1.2em;color:var(--mute)}
+.search{width:100%;padding:14px 16px;border:2px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);font:inherit;margin-bottom:12px}
+.aboutlink{text-align:center;font-size:.9rem;margin:16px 0 0}
+.aboutlink a{color:var(--pink);font-weight:700}
 </style>
 </head>
 <body>
+<button id="qx" type="button" title="Szybkie wyjście na neutralną stronę" aria-label="Szybkie wyjście – przejdź na neutralną stronę">✕ Wyjdź</button>
 <div class="app">
 
 <section class="view on" id="home">
   <div class="in">
-    <div class="logo"><i>💬</i>Seksiaki</div>
+    <a class="logo" href="https://seksiaki.netlify.app/" aria-label="Seksiaki – strona główna"><i>💬</i>Seksiaki</a>
     <h1>Edukacja seksualna<br>bez <span>tabu</span>.</h1>
     <p class="lead">Rzetelna wiedza o ciele, relacjach i zgodzie. Bez wstydu, bez moralizowania, bez internetowych mitów.</p>
     <div class="pills"><b>🧠 Fakty, nie plotki</b><b>🤝 Zgoda i granice</b><b>🛡️ Bezpiecznie</b></div>
@@ -102,13 +115,16 @@ a.mod{text-decoration:none;color:inherit}a.mod[hidden]{display:none}
 </section>
 
 <section class="view" id="menu">
-  <div class="top"><div class="logo" style="font-size:1.2rem"><i style="width:30px;height:30px;font-size:1rem;border-radius:11px 11px 11px 3px">💬</i>Seksiaki</div><button class="theme" id="themeBtn" aria-label="Zmień motyw">🌓</button></div>
+  <div class="top"><a class="logo" href="https://seksiaki.netlify.app/" style="font-size:1.2rem" aria-label="Seksiaki – strona główna"><i style="width:30px;height:30px;font-size:1rem;border-radius:11px 11px 11px 3px">💬</i>Seksiaki</a><button class="theme" id="themeBtn" aria-label="Zmień motyw">🌓</button></div>
   <div class="install" id="installBox" hidden><span class="ic">📲</span><div id="installTxt"></div><button id="installBtn" hidden>Zainstaluj</button></div>
   <h2>Wybierz moduł</h2>
   <p style="color:var(--mute)">Każdy moduł to krótka lekcja i quiz. Zajmie Ci to kilka minut.</p>
   <div id="modList"></div>
-  <a class="mod" id="menuSurvey" href="#" target="_blank" rel="noopener" hidden><span class="ic" style="background:#F9D9E6">📝</span><span><h3>Powiedz nam, co myślisz</h3><small>Anonimowa ankieta · ok. 1 min</small></span></a>
+  <a class="mod" id="menuSurvey" target="_blank" rel="noopener" hidden><span class="ic" style="background:#F9D9E6">📝</span><span><h3>Powiedz nam, co myślisz</h3><small>Anonimowa ankieta · ok. 1 min</small></span></a>
+  <button class="mod" data-go="gloss"><span class="ic" style="background:#FFE9B8">📖</span><span><h3>Seksi-słownik</h3><small>Krótkie wyjaśnienia pojęć, z wyszukiwarką</small></span></button>
+  <button class="mod" data-go="support"><span class="ic" style="background:var(--mintbg)">🆘</span><span><h3>Wsparcie i pomoc</h3><small>Numery telefonów i podpowiedzi, gdzie szukać pomocy</small></span></button>
   <div class="help"><b>Potrzebujesz z kimś porozmawiać?</b> Telefon zaufania dla dzieci i młodzieży: <b>116 111</b> (bezpłatny). W nagłej sytuacji dzwoń na <b>112</b>.</div>
+  <p class="aboutlink"><a href="https://seksiaki.netlify.app/">O projekcie Seksiaki ↗</a></p>
 </section>
 
 <section class="view lesson" id="lesson">
@@ -132,20 +148,41 @@ a.mod{text-decoration:none;color:inherit}a.mod[hidden]{display:none}
   <div class="score" id="rScore"></div>
   <h2 id="rTitle" style="margin-top:8px"></h2>
   <p id="rText" style="color:var(--mute)"></p>
-  <div class="box tip" id="surveyBox" style="text-align:left;margin:18px 0 20px">
+  <div class="box tip" id="surveyBox" hidden style="text-align:left;margin:18px 0 20px">
     <h3>Twoja opinia się liczy</h3>
     <p style="margin-bottom:14px">Ankieta jest anonimowa i zajmuje około minuty. Dzięki niej Seksiaki będą lepsze.</p>
-    <a class="btn mint" id="surveyLink" href="#" target="_blank" rel="noopener">Powiedz nam, co myślisz – wypełnij anonimową ankietę</a>
+    <a class="btn mint" id="surveyLink" target="_blank" rel="noopener">Powiedz nam, co myślisz – wypełnij anonimową ankietę</a>
   </div>
   <button class="btn" id="retry">Spróbuj jeszcze raz</button>
   <button class="btn alt" data-go="menu">Wróć do modułów</button>
 </section>
 
+<section class="view" id="support">
+  <div class="top"><button class="back" data-go="menu">← Moduły</button></div>
+  <h2>Wsparcie i pomoc</h2>
+  <p style="color:var(--mute)">Poproszenie o pomoc to nie słabość. Wybierz to, co pasuje do Twojej sytuacji.</p>
+  <a class="call" href="tel:116111"><b>116 111</b><span>Telefon zaufania dla dzieci i młodzieży. Bezpłatny, możesz nie podawać imienia.</span></a>
+  <a class="call" href="tel:112"><b>112</b><span>Numer alarmowy. Dzwoń, gdy Ty lub ktoś inny jest w bezpośrednim niebezpieczeństwie.</span></a>
+  <a class="call" href="tel:116123"><b>116 123</b><span>Telefon wsparcia emocjonalnego dla dorosłych (od 18 lat).</span></a>
+  <a class="call" href="tel:800120002"><b>800 120 002</b><span>Niebieska Linia: bezpłatna pomoc przy przemocy domowej.</span></a>
+  <div class="box key"><h3>Kiedy warto poszukać wsparcia?</h3><ul><li>Ktoś Cię naciska, szantażuje albo grozi udostępnieniem zdjęć.</li><li>Doświadczasz przemocy lub ktoś przekroczył Twoje granice.</li><li>Masz niepokojące objawy lub pytania o zdrowie.</li><li>Czujesz się przytłoczony lub przytłoczona, samotny lub samotna.</li><li>Masz myśli o skrzywdzeniu siebie. Zadzwoń pod 116 111 lub 112.</li></ul></div>
+  <div class="box tip"><h3>Anonimowa pomoc</h3><p>Na 116 111 możesz rozmawiać bez podawania imienia. Jeśli wolisz pisać, poszukaj czatu na stronie 116111.pl. O zdrowie możesz też zapytać lekarza rodzinnego, pielęgniarkę lub psychologa szkolnego.</p></div>
+  <div class="box"><h3>Jeśli ktoś Cię skrzywdził</h3><p>To nie Twoja wina, niezależnie od okoliczności. Powiedz osobie, której ufasz, albo zadzwoń pod 116 111. Gdy jesteś w niebezpieczeństwie, dzwoń pod 112.</p></div>
+</section>
+
+<section class="view" id="gloss">
+  <div class="top"><button class="back" data-go="menu">← Moduły</button></div>
+  <h2>Seksi-słownik</h2>
+  <input class="search" id="gSearch" type="search" placeholder="Szukaj pojęcia…" autocomplete="off" aria-label="Szukaj pojęcia">
+  <div id="gList"></div>
+  <p class="meta" id="gEmpty" hidden>Nic nie znaleziono. Spróbuj innego słowa.</p>
+</section>
+
 </div>
 <script type="application/json" id="content-data">
 {
- "version": 1,
- "surveyUrl": "https://TWOJ-LINK-DO-GOOGLE-FORMS",
+ "version": 2,
+ "surveyUrl": "",
  "modules": [
   {
    "id": "zgoda",
@@ -295,15 +332,331 @@ a.mod{text-decoration:none;color:inherit}a.mod[hidden]{display:none}
    "id": "ochrona",
    "title": "Ochrona i zdrowie",
    "icon": "🛡️",
-   "status": "soon",
-   "subtitle": "Antykoncepcja, profilaktyka, badania"
+   "iconBg": "#F9D9E6",
+   "status": "active",
+   "subtitle": "Antykoncepcja, profilaktyka, badania",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Dbanie o zdrowie seksualne to zwykła troska o siebie, jak mycie zębów czy szczepienia. Nie trzeba się bać, wystarczy wiedzieć, jak to działa."
+    },
+    {
+     "type": "key",
+     "title": "Antykoncepcja",
+     "html": "Metody antykoncepcji chronią przed niechcianą ciążą, ale tylko prezerwatywa chroni też przed większością infekcji przenoszonych drogą płciową (STI). Tabletki czy wkładka hormonalna przed STI nie chronią. Metodę dobiera się z lekarzem. Przerywany stosunek i liczenie dni to metody zawodne."
+    },
+    {
+     "type": "box",
+     "title": "Profilaktyka i badania",
+     "html": "Wiele infekcji długo nie daje objawów, więc brak objawów nie oznacza, że wszystko jest w porządku. Po sytuacji ryzyka albo przy niepokojących objawach warto zrobić badania. Przed HPV chroni szczepienie. W Polsce działają bezpłatne programy szczepień dla części nastolatków, więc zapytaj lekarza o aktualne zasady."
+    },
+    {
+     "type": "tip",
+     "title": "Antykoncepcja awaryjna",
+     "html": "Tabletka „po” działa tym lepiej, im szybciej ją przyjmiesz. Zgodnie z obecnymi przepisami wymaga recepty, którą zwykle da się uzyskać po konsultacji z lekarzem, także online."
+    },
+    {
+     "type": "box",
+     "title": "Bez straszenia",
+     "html": "Większość infekcji da się wyleczyć, a pozostałe, jak HIV, można skutecznie kontrolować leczeniem. Im wcześniej się zbadasz, tym łatwiej. To zwykła wizyta u lekarza, a nie powód do wstydu."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Która metoda chroni jednocześnie przed ciążą i przed większością infekcji przenoszonych drogą płciową?",
+     "options": [
+      "Tabletki hormonalne",
+      "Prezerwatywa",
+      "Przerywany stosunek"
+     ],
+     "answer": 1,
+     "explanation": "Tylko prezerwatywa daje obie formy ochrony. Tabletki chronią przed ciążą, ale nie przed STI."
+    },
+    {
+     "q": "Nie mam żadnych objawów. Czy to znaczy, że na pewno nie mam infekcji?",
+     "options": [
+      "Tak, na pewno",
+      "Nie, wiele infekcji długo nie daje objawów",
+      "Tak, jeśli jestem młody lub młoda"
+     ],
+     "answer": 1,
+     "explanation": "Wiele STI przez długi czas jest bezobjawowych, dlatego liczą się badania, a nie samopoczucie."
+    },
+    {
+     "q": "Martwisz się, że mogłeś lub mogłaś złapać infekcję. Co robisz?",
+     "options": [
+      "Czekam, aż samo przejdzie",
+      "Rozmawiam z lekarzem i robię badania",
+      "Pytam na forum o diagnozę"
+     ],
+     "answer": 1,
+     "explanation": "Lekarz może zlecić badania i w razie potrzeby wdrożyć leczenie. Forum nie postawi diagnozy."
+    }
+   ]
   },
   {
    "id": "internet",
    "title": "Internet i relacje",
    "icon": "📱",
-   "status": "soon",
-   "subtitle": "Prywatność, zdjęcia, presja rówieśnicza"
+   "iconBg": "#DCE8FF",
+   "status": "active",
+   "subtitle": "Granice w sieci, sexting, presja, prywatność",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Internet jest częścią życia, a zasady są te same co poza siecią: szacunek, zgoda i prywatność."
+    },
+    {
+     "type": "key",
+     "title": "Sexting i zdjęcia",
+     "html": "Wysyłając intymne zdjęcie, tracisz kontrolę nad tym, co się z nim stanie. Nikt nie może Cię do tego zmuszać. Rozsyłanie cudzych intymnych zdjęć bez zgody to przemoc, a materiały z udziałem osób poniżej 18 lat są szczególnie chronione prawem. Jeśli ktoś robi to Tobie, to nie Twoja wina: zapisz dowody, zgłoś sprawę na platformie i poproś o pomoc dorosłą osobę lub zadzwoń pod 116 111."
+    },
+    {
+     "type": "box",
+     "title": "Presja",
+     "html": "„Wszyscy to robią” albo „jak mnie kochasz, to wyślesz” to naciski, a nie dowody uczuć. Masz prawo odmówić i nie musisz się tłumaczyć."
+    },
+    {
+     "type": "box",
+     "title": "Prywatność",
+     "html": "Ustaw prywatne konta, nie podawaj obcym adresu ani szkoły i uważaj na osoby, które znasz tylko z sieci. Zdjęcia i rozmowy zostają na długo."
+    },
+    {
+     "type": "tip",
+     "title": "Red i green flagi",
+     "html": "<b>Green flagi:<\/b> ktoś szanuje Twoje „nie”, nie sprawdza Ci telefonu, daje przestrzeń i cieszy się z Twoich sukcesów.<br><b>Red flagi:<\/b> kontrola, szantaż emocjonalny, odcinanie od znajomych, groźby wysłania zdjęć, przesuwanie Twoich granic."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Ktoś nalega: „Jak mnie kochasz, to wyślij zdjęcie”. Co to jest?",
+     "options": [
+      "Normalny dowód uczuć",
+      "Presja, na którą nie musisz się godzić",
+      "Test lojalności, który warto zdać"
+     ],
+     "answer": 1,
+     "explanation": "Miłość nie polega na wymuszaniu. Masz prawo powiedzieć „nie” bez tłumaczenia się."
+    },
+    {
+     "q": "Dostajesz cudze intymne zdjęcie. Co robisz?",
+     "options": [
+      "Wysyłam znajomym",
+      "Nie rozsyłam, usuwam i w razie potrzeby zgłaszam",
+      "Wrzucam na grupę dla żartu"
+     ],
+     "answer": 1,
+     "explanation": "Rozsyłanie cudzych intymnych zdjęć to przemoc. Najlepiej nie przekazywać ich dalej i zgłosić sprawę."
+    },
+    {
+     "q": "Która sytuacja to red flag?",
+     "options": [
+      "Ktoś szanuje Twoje „nie”",
+      "Ktoś sprawdza Ci telefon i złości się, gdy spotykasz znajomych",
+      "Ktoś cieszy się z Twoich sukcesów"
+     ],
+     "answer": 1,
+     "explanation": "Kontrolowanie i izolowanie od znajomych to typowe sygnały ostrzegawcze w relacji."
+    }
+   ]
+  },
+  {
+   "id": "mity",
+   "title": "Mit czy fakt?",
+   "icon": "🔎",
+   "iconBg": "#D9F2FF",
+   "status": "active",
+   "subtitle": "Obalamy popularne mity z sieci i szkoły",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Mity krążą w szkole i w sieci, bo o seksie wiele osób wstydzi się pytać. Sprawdźmy kilka najpopularniejszych."
+    },
+    {
+     "type": "key",
+     "title": "Mit: „Za pierwszym razem nie da się zajść w ciążę”",
+     "html": "<b>Fakt:<\/b> ciąża jest możliwa za każdym razem, także za pierwszym."
+    },
+    {
+     "type": "box",
+     "title": "Mit: „Przerywany stosunek to skuteczna antykoncepcja”",
+     "html": "<b>Fakt:<\/b> to metoda zawodna, z wysokim odsetkiem wpadek. Trudno ją dobrze zastosować."
+    },
+    {
+     "type": "box",
+     "title": "Mit: „Masturbacja szkodzi”",
+     "html": "<b>Fakt:<\/b> nie szkodzi zdrowiu ani płodności. To normalne, prywatne zachowanie."
+    },
+    {
+     "type": "box",
+     "title": "Mit: „Zdrowo wygląda, więc nic nie ma”",
+     "html": "<b>Fakt:<\/b> po wyglądzie nie rozpoznasz infekcji, bo wiele z nich nie daje objawów."
+    },
+    {
+     "type": "tip",
+     "title": "Skąd brać wiarygodne informacje?",
+     "html": "Sprawdzaj, kto jest autorem i czy podaje źródła. Najpewniej to lekarze, poradnie i organizacje zdrowotne. Gdy coś brzmi sensacyjnie albo straszy, zachowaj ostrożność."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Za pierwszym razem nie da się zajść w ciążę.",
+     "options": [
+      "Fakt",
+      "Mit",
+      "Tylko u nastolatek"
+     ],
+     "answer": 1,
+     "explanation": "Mit. Ciąża jest możliwa za każdym razem."
+    },
+    {
+     "q": "Prezerwatywa zmniejsza ryzyko ciąży i większości infekcji.",
+     "options": [
+      "Fakt",
+      "Mit"
+     ],
+     "answer": 0,
+     "explanation": "Fakt. Użyta prawidłowo, jest jedną z najlepszych form ochrony."
+    },
+    {
+     "q": "Masturbacja szkodzi zdrowiu.",
+     "options": [
+      "Fakt",
+      "Mit"
+     ],
+     "answer": 1,
+     "explanation": "Mit. Nie szkodzi zdrowiu ani płodności."
+    },
+    {
+     "q": "Przerywany stosunek jest skuteczną antykoncepcją.",
+     "options": [
+      "Fakt",
+      "Mit"
+     ],
+     "answer": 1,
+     "explanation": "Mit. To metoda zawodna."
+    }
+   ]
+  },
+  {
+   "id": "porno",
+   "title": "Porno vs. Rzeczywistość",
+   "icon": "🎬",
+   "iconBg": "#E8DDFB",
+   "status": "active",
+   "subtitle": "Fikcja kontra prawdziwa bliskość",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Filmy dla dorosłych to fikcja, tak jak filmy akcji. Są przeznaczone dla dorosłych i nie pokazują, jak naprawdę wygląda bliskość, więc nie są dobrym źródłem wiedzy. Nie chodzi o ocenianie, tylko o to, by odróżniać scenariusz od życia."
+    },
+    {
+     "type": "key",
+     "title": "Czego tam nie widać",
+     "html": "Rozmów o zgodzie i granicach, niepewności, śmiechu i pomyłek. Obraz jest wyreżyserowany, dobrany i obrobiony, więc nie pokazuje prawdziwej różnorodności ciał."
+    },
+    {
+     "type": "box",
+     "title": "Ciało i oczekiwania",
+     "html": "Porównywanie się z aktorami i aktorkami może obniżać pewność siebie i tworzyć nierealne oczekiwania wobec siebie i partnera. W prawdziwej bliskości liczy się komfort obu osób."
+    },
+    {
+     "type": "box",
+     "title": "Szacunek i komunikacja",
+     "html": "W prawdziwej relacji pytasz, słuchasz i reagujesz na to, co mówi druga osoba. Nie odgrywasz scenariusza z ekranu."
+    },
+    {
+     "type": "tip",
+     "title": "Gdy to na Ciebie wpływa",
+     "html": "Jeśli oglądanie przeszkadza Ci w codziennym życiu, trudno Ci przestać albo budzi niepokój lub poczucie winy, możesz porozmawiać z zaufaną osobą, psychologiem albo zadzwonić pod 116 111. To nie powód do wstydu."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Czego zwykle brakuje w filmach dla dorosłych?",
+     "options": [
+      "Rozmowy o zgodzie i granicach",
+      "Oświetlenia",
+      "Muzyki"
+     ],
+     "answer": 0,
+     "explanation": "Zgoda, komunikacja i troska o drugą osobę to podstawa prawdziwej bliskości, a w scenariuszach często ich nie ma."
+    },
+    {
+     "q": "Czy ciała i reakcje z takich filmów są dobrym wzorcem?",
+     "options": [
+      "Tak, tak wygląda norma",
+      "Nie, to wyreżyserowana fikcja",
+      "Tak, jeśli wyglądają naturalnie"
+     ],
+     "answer": 1,
+     "explanation": "To scenariusz, reżyseria i obróbka obrazu. Prawdziwe ciała i reakcje są bardzo różne."
+    },
+    {
+     "q": "Co jest najważniejsze w prawdziwej bliskości?",
+     "options": [
+      "Odegranie scenariusza",
+      "Komfort i zgoda obu osób",
+      "Dorównanie innym"
+     ],
+     "answer": 1,
+     "explanation": "Szacunek, komunikacja i wzajemny komfort."
+    }
+   ]
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Zgoda (consent)",
+   "def": "Dobrowolne, świadome i konkretne „tak”, które można w każdej chwili cofnąć. Brak sprzeciwu to nie zgoda."
+  },
+  {
+   "term": "Granice",
+   "def": "To, co jest dla Ciebie komfortowe, a co nie: fizycznie, emocjonalnie i w internecie. Każdy ma swoje i prawo je zmieniać."
+  },
+  {
+   "term": "Ghosting",
+   "def": "Nagłe zerwanie kontaktu bez wyjaśnienia. Bywa raniące, a szczere „nie chcę dalej” jest uczciwsze."
+  },
+  {
+   "term": "Antykoncepcja",
+   "def": "Metody zapobiegania ciąży, np. prezerwatywa, tabletki, wkładka. Tylko prezerwatywa chroni też przed większością STI."
+  },
+  {
+   "term": "HPV",
+   "def": "Bardzo powszechny wirus brodawczaka ludzkiego. Niektóre typy mogą prowadzić do nowotworów, np. raka szyjki macicy. Chronią szczepienia i badania profilaktyczne."
+  },
+  {
+   "term": "Aseksualność",
+   "def": "Orientacja, w której ktoś nie odczuwa pociągu seksualnego lub odczuwa go rzadko. To nie choroba ani wybór i nie wyklucza potrzeby bliskości."
+  },
+  {
+   "term": "STI",
+   "def": "Infekcje przenoszone drogą płciową, np. chlamydia, HIV, HPV. Często bez objawów, dlatego warto się badać. Większość da się wyleczyć lub kontrolować."
+  },
+  {
+   "term": "Sexting",
+   "def": "Wysyłanie wiadomości lub zdjęć o intymnym charakterze. Tylko za zgodą i ze świadomością ryzyka, bo trudno kontrolować, co stanie się z materiałem."
+  },
+  {
+   "term": "Gaslighting",
+   "def": "Manipulacja, w której ktoś wmawia Ci, że to, co czujesz lub pamiętasz, jest nieprawdą, żebyś zwątpił lub zwątpiła w siebie."
+  },
+  {
+   "term": "Orientacja seksualna",
+   "def": "To, do kogo czujemy pociąg lub zakochanie, np. hetero-, homo- albo biseksualność. Nie jest chorobą ani wyborem."
+  },
+  {
+   "term": "Tożsamość płciowa",
+   "def": "Poczucie, kim się jest pod względem płci. Może, ale nie musi, pokrywać się z płcią przypisaną przy urodzeniu."
+  },
+  {
+   "term": "Red flag",
+   "def": "Sygnał ostrzegawczy w relacji, np. kontrola, szantaż emocjonalny albo ignorowanie Twojego „nie”."
   }
  ]
 }
@@ -323,7 +676,7 @@ function loadContent(){
   try{
     CONTENT=JSON.parse($('content-data').textContent);
     if(!CONTENT||!Array.isArray(CONTENT.modules))throw new Error('format');
-    renderMenu();
+    renderMenu();renderGloss();
     var u=CONTENT.surveyUrl,ms=$('menuSurvey');
     if(u){ms.href=u;ms.hidden=false}else{ms.hidden=true}
   }catch(err){
@@ -409,6 +762,17 @@ $('themeBtn').onclick=function(){
   var r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
   r.dataset.theme=dark?'light':'dark';
 };
+function renderGloss(){
+  var q=$('gSearch').value.trim().toLowerCase(),l=$('gList'),n=0;l.innerHTML='';
+  (CONTENT.glossary||[]).slice().sort(function(a,b){return a.term.localeCompare(b.term,'pl')}).forEach(function(g){
+    if(q&&(g.term+' '+g.def).toLowerCase().indexOf(q)<0)return;n++;
+    var d=document.createElement('div'),h=document.createElement('h3'),p=document.createElement('p');
+    d.className='box';h.textContent=g.term;p.textContent=g.def;d.appendChild(h);d.appendChild(p);l.appendChild(d);
+  });
+  $('gEmpty').hidden=n>0;
+}
+$('gSearch').oninput=renderGloss;
+$('qx').onclick=function(){location.replace('https://pl.wikipedia.org/wiki/Wikipedia:Strona_g%C5%82%C3%B3wna')};
 loadContent();
 
 /* ===== PWA ===== */
