@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seksiaki – edukacja bez tabu</title>
+<meta name="description" content="Rzetelna edukacja seksualna dla młodzieży: zgoda, granice, ciało i zdrowie.">
+<meta name="theme-color" content="#2A1442">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Seksiaki">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" id="ati" href="data:,">
+<link rel="manifest" id="mf">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20100%20100%27%3E%3Crect%20width=%27100%27%20height=%27100%27%20rx=%2722%27%20fill=%27%232A1442%27/%3E%3Cg%20transform=%27translate%2850%2050%29%20scale%28.8%29%20rotate%28-6%29%20translate%28-50%20-50%29%27%3E%3Cpath%20d=%27M15.7%2089H70.3A18.7%2018.7%200%200%200%2089%2070.3V29.7A18.7%2018.7%200%200%200%2070.3%2011H29.7A18.7%2018.7%200%200%200%2011%2029.7V84.3A4.7%204.7%200%200%200%2015.7%2089Z%27%20fill=%27%23F0306E%27/%3E%3Cpath%20d=%27M65.7%2057.6Q65.7%2062.9%2061.7%2065.7Q57.8%2068.5%2050.2%2068.5Q43.3%2068.5%2039.4%2066.1Q35.5%2063.6%2034.3%2058.6L41.6%2057.4Q42.4%2060.3%2044.5%2061.6Q46.6%2062.9%2050.4%2062.9Q58.3%2062.9%2058.3%2058.1Q58.3%2056.5%2057.4%2055.5Q56.5%2054.5%2054.9%2053.9Q53.2%2053.2%2048.6%2052.3Q44.5%2051.3%2042.9%2050.8Q41.4%2050.2%2040.1%2049.4Q38.8%2048.6%2037.9%2047.5Q37%2046.4%2036.5%2044.9Q36%2043.5%2036%2041.6Q36%2036.7%2039.7%2034.1Q43.4%2031.5%2050.3%2031.5Q57%2031.5%2060.4%2033.6Q63.7%2035.7%2064.7%2040.5L57.4%2041.5Q56.9%2039.2%2055.1%2038Q53.4%2036.8%2050.2%2036.8Q43.4%2036.8%2043.4%2041.1Q43.4%2042.5%2044.1%2043.4Q44.8%2044.3%2046.2%2044.9Q47.7%2045.6%2052%2046.5Q57.2%2047.6%2059.4%2048.5Q61.7%2049.5%2063%2050.7Q64.3%2051.9%2065%2053.7Q65.7%2055.4%2065.7%2057.6Z%27%20fill=%27%23fff%27/%3E%3C/g%3E%3C/svg%3E">
+<style>
+:root{--bg:#FFF6FA;--card:#fff;--ink:#2A1442;--mute:#6B5A7D;--pink:#F0306E;--pinkd:#C41F55;--mint:#0FA37F;--mintbg:#DDF7EE;--bad:#C2253A;--badbg:#FDE3E6;--sun:#FFD25E;--line:#EBDDF0;--hero1:#2A1442;--hero2:#5B2A8C;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#170C26;--card:#241238;--ink:#F7ECFF;--mute:#B9A6CC;--pink:#FF5C8F;--pinkd:#FF7FA8;--mint:#4FE3B9;--mintbg:#123B34;--bad:#FF8A98;--badbg:#45172A;--line:#3A2356;--hero1:#0F0719;--hero2:#4A1F78}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#170C26;--card:#241238;--ink:#F7ECFF;--mute:#B9A6CC;--pink:#FF5C8F;--pinkd:#FF7FA8;--mint:#4FE3B9;--mintbg:#123B34;--bad:#FF8A98;--badbg:#45172A;--line:#3A2356;--hero1:#0F0719;--hero2:#4A1F78}
+*,*:before,*:after{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+body{min-height:100vh}
+.app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+.view{display:none;flex:1;flex-direction:column;padding:20px 18px 32px}
+.view.on{display:flex}
+h1,h2,h3{line-height:1.15;margin:0 0 .5em;letter-spacing:-.02em}
+p{margin:0 0 1em}
+button{font:inherit;cursor:pointer;color:inherit}
+button:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.logo{display:inline-flex;align-items:center;gap:10px;font-weight:900;font-size:1.5rem;letter-spacing:-.03em}
+
+#home{padding:0;background:linear-gradient(160deg,var(--hero1),var(--hero2));color:#fff;justify-content:space-between}
+#home .in{padding:26px 22px 28px;display:flex;flex-direction:column;flex:1}
+#home .logo{color:#fff}
+#home h1{font-size:clamp(2.1rem,9vw,3rem);font-weight:900;margin-top:15vh}
+#home h1 span{display:inline-block;background:var(--sun);color:#2A1442;padding:0 .2em;border-radius:.2em;transform:rotate(-2deg)}
+#home p.lead{font-size:1.1rem;opacity:.92;max-width:34ch}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 26px}
+.pills b{font-weight:700;font-size:.85rem;padding:6px 12px;border-radius:99px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25)}
+.btn{display:block;width:100%;border:0;border-radius:16px;padding:16px 20px;font-weight:800;font-size:1.05rem;background:var(--pink);color:#fff;box-shadow:0 5px 0 var(--pinkd);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--pinkd)}
+.btn.alt{background:transparent;color:var(--ink);box-shadow:none;border:2px solid var(--line);margin-top:10px}
+.fine{font-size:.8rem;opacity:.75;margin-top:18px;margin-bottom:0}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.back,.theme{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-weight:700}
+.mod{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px}
+.mod:not([disabled]):hover{border-color:var(--pink)}
+.mod .ic{flex:none;width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:1.6rem}
+.mod h3{margin:0 0 2px;font-size:1.05rem}
+.mod small{color:var(--mute);display:block;line-height:1.35}
+.mod[disabled]{opacity:.55;cursor:default}
+.tag{font-size:.72rem;font-weight:700;background:var(--sun);color:#2A1442;border-radius:99px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.install{display:flex;align-items:center;gap:12px;background:var(--mintbg);border-radius:18px;padding:14px 16px;margin-bottom:14px}
+.install[hidden]{display:none}
+.install .ic{font-size:1.6rem}
+.install div{flex:1;font-size:.92rem;line-height:1.4}
+.install button{border:0;background:var(--mint);color:#fff;font-weight:800;border-radius:12px;padding:10px 14px}
+.install button[hidden]{display:none}
+.lesson h2{font-size:1.7rem}
+.meta{color:var(--mute);font-size:.9rem}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:14px 0}
+.box h3{font-size:1.05rem;margin-bottom:.3em}
+.box p{margin:0;color:var(--mute)}
+.box.key{border-left:6px solid var(--pink)}
+.box.tip{background:var(--mintbg);border-color:transparent}
+.box.tip p{color:var(--ink)}
+.help{font-size:.88rem;color:var(--mute);background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:12px 14px;margin-top:6px}
+.bar{height:10px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:6px}
+.bar div{height:100%;width:0;background:var(--pink);border-radius:99px;transition:width .35s}
+.count{font-size:.85rem;color:var(--mute);margin-bottom:16px}
+.q{font-size:1.35rem;font-weight:800;margin-bottom:16px;line-height:1.25}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:10px;font-weight:600}
+.opt.ok{border-color:var(--mint);background:var(--mintbg)}
+.opt.no{border-color:var(--bad);background:var(--badbg);animation:shake .3s}
+.opt.dim{opacity:.55}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.fb{display:none;border-radius:16px;padding:14px 16px;margin:6px 0 14px}
+.fb.show{display:block}
+.fb.good{background:var(--mintbg)}
+.fb.bad{background:var(--badbg)}
+.fb strong{display:block;margin-bottom:2px}
+.score{font-size:4rem;font-weight:900;color:var(--pink);margin:20px 0 0;text-align:center}
+#res{text-align:center}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+a.btn{text-decoration:none}.btn.mint{background:var(--mint);box-shadow:0 5px 0 rgba(0,0,0,.25);color:#fff}.btn.mint:active{box-shadow:0 1px 0 rgba(0,0,0,.25)}
+a.mod{text-decoration:none;color:inherit}a.mod[hidden]{display:none}
+[hidden]{display:none!important}
+a.logo{color:inherit;text-decoration:none}
+.top{padding-right:112px}
+#qx{position:fixed;z-index:50;top:calc(env(safe-area-inset-top,0px) + 10px);right:12px;border:1px solid var(--line);background:var(--card);color:var(--mute);border-radius:99px;padding:6px 12px;font-size:.8rem;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.call{display:block;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:inherit}
+.call b{display:block;font-size:1.5rem;color:var(--pink);letter-spacing:-.02em}
+.call span{color:var(--mute);font-size:.92rem;line-height:1.4}
+.box ul{margin:0;padding-left:1.2em;color:var(--mute)}
+.search{width:100%;padding:14px 16px;border:2px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);font:inherit;margin-bottom:12px}
+.aboutlink{text-align:center;font-size:.9rem;margin:16px 0 0}
+.aboutlink a{color:var(--pink);font-weight:700}
+.lg{width:40px;height:40px;flex:none;display:block}
+@media (max-width:340px){.top .logo .wm{display:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="sk" viewBox="0 0 100 100"><g transform="rotate(-6 50 50)"><path d="M15.7 89H70.3A18.7 18.7 0 0 0 89 70.3V29.7A18.7 18.7 0 0 0 70.3 11H29.7A18.7 18.7 0 0 0 11 29.7V84.3A4.7 4.7 0 0 0 15.7 89Z" fill="#F0306E"/><path d="M65.7 57.6Q65.7 62.9 61.7 65.7Q57.8 68.5 50.2 68.5Q43.3 68.5 39.4 66.1Q35.5 63.6 34.3 58.6L41.6 57.4Q42.4 60.3 44.5 61.6Q46.6 62.9 50.4 62.9Q58.3 62.9 58.3 58.1Q58.3 56.5 57.4 55.5Q56.5 54.5 54.9 53.9Q53.2 53.2 48.6 52.3Q44.5 51.3 42.9 50.8Q41.4 50.2 40.1 49.4Q38.8 48.6 37.9 47.5Q37 46.4 36.5 44.9Q36 43.5 36 41.6Q36 36.7 39.7 34.1Q43.4 31.5 50.3 31.5Q57 31.5 60.4 33.6Q63.7 35.7 64.7 40.5L57.4 41.5Q56.9 39.2 55.1 38Q53.4 36.8 50.2 36.8Q43.4 36.8 43.4 41.1Q43.4 42.5 44.1 43.4Q44.8 44.3 46.2 44.9Q47.7 45.6 52 46.5Q57.2 47.6 59.4 48.5Q61.7 49.5 63 50.7Q64.3 51.9 65 53.7Q65.7 55.4 65.7 57.6Z" fill="#fff"/></g></symbol></svg>
+<button id="qx" type="button" title="Szybkie wyjście na neutralną stronę" aria-label="Szybkie wyjście – przejdź na neutralną stronę">✕ Wyjdź</button>
+<div class="app">
+
+<section class="view on" id="home">
+  <div class="in">
+    <a class="logo" href="https://seksiaki.netlify.app/" aria-label="Seksiaki – strona główna"><svg class="lg" aria-hidden="true"><use href="#sk"/></svg><span class="wm">Seksiaki</span></a>
+    <h1>Edukacja seksualna<br>bez <span>tabu</span>.</h1>
+    <p class="lead">Rzetelna wiedza o ciele, relacjach i zgodzie. Bez wstydu, bez moralizowania, bez internetowych mitów.</p>
+    <div class="pills"><b>🧠 Fakty, nie plotki</b><b>🤝 Zgoda i granice</b><b>🛡️ Bezpiecznie</b></div>
+    <div style="margin-top:auto">
+      <button class="btn" data-go="menu">Zaczynam</button>
+      <p class="fine">Platforma edukacyjna dla młodzieży. Nie zastępuje porady lekarza ani psychologa.</p>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="menu">
+  <div class="top"><a class="logo" href="https://seksiaki.netlify.app/" style="font-size:1.2rem" aria-label="Seksiaki – strona główna"><svg class="lg" style="width:34px;height:34px" aria-hidden="true"><use href="#sk"/></svg><span class="wm">Seksiaki</span></a><button class="theme" id="themeBtn" aria-label="Zmień motyw">🌓</button></div>
+  <div class="install" id="installBox" hidden><span class="ic">📲</span><div id="installTxt"></div><button id="installBtn" hidden>Zainstaluj</button></div>
+  <h2>Wybierz moduł</h2>
+  <p style="color:var(--mute)">Każdy moduł to krótka lekcja i quiz. Zajmie Ci to kilka minut.</p>
+  <div id="modList"></div>
+  <a class="mod" id="menuSurvey" target="_blank" rel="noopener noreferrer" hidden><span class="ic" style="background:#F9D9E6">📝</span><span><h3>Powiedz nam, co myślisz</h3><small>Anonimowa ankieta · ok. 1 min</small></span></a>
+  <button class="mod" data-go="gloss"><span class="ic" style="background:#FFE9B8">📖</span><span><h3>Seksi-słownik</h3><small>Krótkie wyjaśnienia pojęć, z wyszukiwarką</small></span></button>
+  <button class="mod" data-go="support"><span class="ic" style="background:var(--mintbg)">🆘</span><span><h3>Wsparcie i pomoc</h3><small>Numery telefonów i podpowiedzi, gdzie szukać pomocy</small></span></button>
+  <div class="help"><b>Potrzebujesz z kimś porozmawiać?</b> Telefon zaufania dla dzieci i młodzieży: <b>116 111</b> (bezpłatny). W nagłej sytuacji dzwoń na <b>112</b>.</div>
+  <p class="aboutlink"><a href="https://seksiaki.netlify.app/">O projekcie Seksiaki ↗</a></p>
+</section>
+
+<section class="view lesson" id="lesson">
+  <div class="top"><button class="back" data-go="menu">← Moduły</button><span class="meta" id="lMeta"></span></div>
+  <h2 id="lTitle"></h2>
+  <div id="lBody"></div>
+  <button class="btn" id="toQuiz" style="margin-top:14px">Sprawdź wiedzę w quizie</button>
+</section>
+
+<section class="view" id="quiz">
+  <div class="top"><button class="back" id="quitQuiz">← Wyjdź</button></div>
+  <div class="bar"><div id="prog"></div></div>
+  <div class="count" id="qCount"></div>
+  <div class="q" id="qText"></div>
+  <div id="qOpts"></div>
+  <div class="fb" id="fb" role="status" aria-live="polite"><strong id="fbH"></strong><span id="fbT"></span></div>
+  <button class="btn" id="next" style="display:none">Dalej</button>
+</section>
+
+<section class="view" id="res">
+  <div class="score" id="rScore"></div>
+  <h2 id="rTitle" style="margin-top:8px"></h2>
+  <p id="rText" style="color:var(--mute)"></p>
+  <div class="box tip" id="surveyBox" hidden style="text-align:left;margin:18px 0 20px">
+    <h3>Twoja opinia się liczy</h3>
+    <p style="margin-bottom:14px">Ankieta jest anonimowa i zajmuje około minuty. Dzięki niej Seksiaki będą lepsze.</p>
+    <a class="btn mint" id="surveyLink" target="_blank" rel="noopener noreferrer">Powiedz nam, co myślisz – wypełnij anonimową ankietę</a>
+  </div>
+  <button class="btn" id="retry">Spróbuj jeszcze raz</button>
+  <button class="btn alt" data-go="menu">Wróć do modułów</button>
+</section>
+
+<section class="view" id="support">
+  <div class="top"><button class="back" data-go="menu">← Moduły</button></div>
+  <h2>Wsparcie i pomoc</h2>
+  <p style="color:var(--mute)">Poproszenie o pomoc to nie słabość. Wybierz to, co pasuje do Twojej sytuacji.</p>
+  <a class="call" href="tel:116111"><b>116 111</b><span>Telefon zaufania dla dzieci i młodzieży. Bezpłatny, możesz nie podawać imienia.</span></a>
+  <a class="call" href="tel:112"><b>112</b><span>Numer alarmowy. Dzwoń, gdy Ty lub ktoś inny jest w bezpośrednim niebezpieczeństwie.</span></a>
+  <a class="call" href="tel:116123"><b>116 123</b><span>Telefon wsparcia emocjonalnego dla dorosłych (od 18 lat).</span></a>
+  <a class="call" href="tel:800120002"><b>800 120 002</b><span>Niebieska Linia: bezpłatna pomoc przy przemocy domowej.</span></a>
+  <div class="box key"><h3>Kiedy warto poszukać wsparcia?</h3><ul><li>Ktoś Cię naciska, szantażuje albo grozi udostępnieniem zdjęć.</li><li>Doświadczasz przemocy lub ktoś przekroczył Twoje granice.</li><li>Masz niepokojące objawy lub pytania o zdrowie.</li><li>Czujesz się przytłoczony lub przytłoczona, samotny lub samotna.</li><li>Masz myśli o skrzywdzeniu siebie. Zadzwoń pod 116 111 lub 112.</li></ul></div>
+  <div class="box tip"><h3>Anonimowa pomoc</h3><p>Na 116 111 możesz rozmawiać bez podawania imienia. Jeśli wolisz pisać, poszukaj czatu na stronie 116111.pl. O zdrowie możesz też zapytać lekarza rodzinnego, pielęgniarkę lub psychologa szkolnego.</p></div>
+  <div class="box"><h3>Jeśli ktoś Cię skrzywdził</h3><p>To nie Twoja wina, niezależnie od okoliczności. Powiedz osobie, której ufasz, albo zadzwoń pod 116 111. Gdy jesteś w niebezpieczeństwie, dzwoń pod 112.</p></div>
+</section>
+
+<section class="view" id="gloss">
+  <div class="top"><button class="back" data-go="menu">← Moduły</button></div>
+  <h2>Seksi-słownik</h2>
+  <input class="search" id="gSearch" type="search" placeholder="Szukaj pojęcia…" autocomplete="off" aria-label="Szukaj pojęcia">
+  <div id="gList"></div>
+  <p class="meta" id="gEmpty" hidden>Nic nie znaleziono. Spróbuj innego słowa.</p>
+</section>
+
+</div>
+<script type="application/json" id="content-data">
+{
+ "version": 2,
+ "surveyUrl": "https://forms.gle/nD8uWP5uZakJE4YSA",
+ "modules": [
+  {
+   "id": "zgoda",
+   "title": "Granice i zgoda",
+   "icon": "🤝",
+   "iconBg": "var(--mintbg)",
+   "status": "active",
+   "subtitle": "Czym jest zgoda i jak rozmawiać o granicach",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Zgoda to jasne „tak” od drugiej osoby: na konkretną rzecz, w konkretnym momencie. Dotyczy pocałunków, przytulania, dotyku, wysyłania zdjęć i wszystkiego, co jest intymne."
+    },
+    {
+     "type": "key",
+     "title": "Dobra zgoda jest:",
+     "html": "<b>Dobrowolna<\/b> – bez presji, szantażu i manipulacji.<br><b>Świadoma<\/b> – osoba wie, na co się zgadza, i jest w stanie zdecydować (alkohol i inne substancje to ograniczają).<br><b>Konkretna<\/b> – „tak” na jedną rzecz nie oznacza „tak” na wszystko.<br><b>Odwołalna<\/b> – można zmienić zdanie w każdej chwili, także w trakcie.<br><b>Entuzjastyczna<\/b> – nie „no dobra, niech będzie”, tylko szczere „chcę”."
+    },
+    {
+     "type": "box",
+     "title": "Brak sprzeciwu to nie zgoda",
+     "html": "Cisza, zamrożenie albo brak walki nie oznaczają „tak”. Jeśli nie jesteś pewien lub pewna, zapytaj. To nie jest niezręczne, to jest dojrzałe."
+    },
+    {
+     "type": "tip",
+     "title": "Jak mówić o granicach?",
+     "html": "Mów o sobie i krótko: „Na to jeszcze nie jestem gotowy/gotowa”, „Podoba mi się to, a tamto nie”, „Zatrzymajmy się”. Masz prawo do swoich granic i obowiązek szanować cudze."
+    },
+    {
+     "type": "box",
+     "title": "Prawo w Polsce",
+     "html": "Wiek zgody wynosi 15 lat, ale nie zwalnia to nikogo z obowiązku uzyskania prawdziwej zgody. Zmuszanie do czynności seksualnych oraz wykorzystanie czyjejś zależności lub bezradności to przestępstwo."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Ktoś mówi „tak” na pocałunek. Co to oznacza?",
+     "options": [
+      "Że zgadza się też na wszystko inne",
+      "Że zgadza się na pocałunek, a o resztę trzeba zapytać",
+      "Że nie może już zmienić zdania"
+     ],
+     "answer": 1,
+     "explanation": "Zgoda jest konkretna. „Tak” na jedną rzecz dotyczy tylko tej rzeczy."
+    },
+    {
+     "q": "Ktoś w trakcie intymnej sytuacji mówi „stop”. Co robisz?",
+     "options": [
+      "Przestaję od razu",
+      "Pytam „na pewno?” i próbuję przekonać",
+      "Kończę po chwili, bo już zaczęliśmy"
+     ],
+     "answer": 0,
+     "explanation": "Zgodę można odwołać w każdej chwili. „Stop” oznacza stop, bez negocjacji."
+    },
+    {
+     "q": "Czy osoba, która jest bardzo pijana, może dać ważną zgodę?",
+     "options": [
+      "Tak, jeśli się uśmiecha",
+      "Tak, jeśli sama zaczęła",
+      "Nie, bo nie jest w stanie świadomie zdecydować"
+     ],
+     "answer": 2,
+     "explanation": "Alkohol i inne substancje odbierają zdolność do świadomej decyzji. W takiej sytuacji zgody nie ma."
+    },
+    {
+     "q": "Co z milczeniem i brakiem protestu?",
+     "options": [
+      "To nie jest zgoda",
+      "To zgoda domyślna",
+      "To zgoda, jeśli jesteście parą"
+     ],
+     "answer": 0,
+     "explanation": "Zgoda to wyraźne „tak”, a nie brak „nie”. Bycie w związku niczego tu nie zmienia."
+    }
+   ]
+  },
+  {
+   "id": "anatomia",
+   "title": "Anatomia bez tabu",
+   "icon": "🧍",
+   "iconBg": "#FFE9B8",
+   "status": "active",
+   "subtitle": "Jak działa ciało i kiedy iść do lekarza",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Znajomość własnego ciała to podstawa zdrowia i komfortu. Używanie właściwych nazw nie jest wulgarne, tylko pomaga zrozumieć, co się dzieje, i opisać to lekarzowi."
+    },
+    {
+     "type": "key",
+     "title": "Każde ciało jest inne",
+     "html": "Kształt, rozmiar, kolor i proporcje bywają bardzo różne, także w przypadku narządów płciowych i piersi. To naturalna różnorodność, a filmy z internetu nie są wzorem normy."
+    },
+    {
+     "type": "box",
+     "title": "Dojrzewanie ma własne tempo",
+     "html": "U jednych osób zmiany zaczynają się wcześniej, u innych później. Obejmują wzrost, owłosienie, zmianę głosu, pierwszą miesiączkę czy pierwsze polucje. Porównywanie się z rówieśnikami nic nie mówi o zdrowiu."
+    },
+    {
+     "type": "box",
+     "title": "Cykl miesiączkowy",
+     "html": "W pierwszych latach po pierwszej miesiączce cykl bywa nieregularny. Warto notować daty w kalendarzu lub aplikacji, bo to ułatwia zauważenie, co jest u Ciebie typowe."
+    },
+    {
+     "type": "tip",
+     "title": "Kiedy iść do lekarza?",
+     "html": "Gdy pojawia się ból, który nie mija, nietypowa wydzielina lub zapach, swędzenie, zmiany skórne, guzek, bardzo bolesne lub bardzo obfite miesiączki albo gdy po prostu masz pytania. Możesz zgłosić się do ginekologa, urologa lub lekarza rodzinnego. Nie musisz mieć „poważnego” powodu."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Czy to normalne, że ciała różnią się wyglądem?",
+     "options": [
+      "Nie, istnieje jeden prawidłowy wzór",
+      "Tak, różnorodność jest naturalna",
+      "Tylko u dorosłych"
+     ],
+     "answer": 1,
+     "explanation": "Ludzkie ciała bardzo się różnią. Zdjęcia z internetu często są wyselekcjonowane lub edytowane."
+    },
+    {
+     "q": "Pierwsza miesiączka była niedawno, a cykl jest nieregularny. Co to zwykle oznacza?",
+     "options": [
+      "To często normalne w pierwszych latach",
+      "To zawsze choroba",
+      "To znaczy, że coś jest ze mną nie tak"
+     ],
+     "answer": 0,
+     "explanation": "Cykl dopiero się stabilizuje. Jeśli jednak coś Cię niepokoi, warto porozmawiać z lekarzem."
+    },
+    {
+     "q": "Kiedy warto zgłosić się do lekarza?",
+     "options": [
+      "Tylko gdy jest naprawdę źle",
+      "Gdy coś niepokoi lub masz pytania",
+      "Nigdy, samo przejdzie"
+     ],
+     "answer": 1,
+     "explanation": "Pytania i niepokojące objawy są dobrym powodem. Wcześniejsza reakcja zwykle ułatwia leczenie."
+    }
+   ]
+  },
+  {
+   "id": "ochrona",
+   "title": "Ochrona i zdrowie",
+   "icon": "🛡️",
+   "iconBg": "#F9D9E6",
+   "status": "active",
+   "subtitle": "Antykoncepcja, profilaktyka, badania",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Dbanie o zdrowie seksualne to zwykła troska o siebie, jak mycie zębów czy szczepienia. Nie trzeba się bać, wystarczy wiedzieć, jak to działa."
+    },
+    {
+     "type": "key",
+     "title": "Antykoncepcja",
+     "html": "Metody antykoncepcji chronią przed niechcianą ciążą, ale tylko prezerwatywa chroni też przed większością infekcji przenoszonych drogą płciową (STI). Tabletki czy wkładka hormonalna przed STI nie chronią. Metodę dobiera się z lekarzem. Przerywany stosunek i liczenie dni to metody zawodne."
+    },
+    {
+     "type": "box",
+     "title": "Profilaktyka i badania",
+     "html": "Wiele infekcji długo nie daje objawów, więc brak objawów nie oznacza, że wszystko jest w porządku. Po sytuacji ryzyka albo przy niepokojących objawach warto zrobić badania. Przed HPV chroni szczepienie. W Polsce działają bezpłatne programy szczepień dla części nastolatków, więc zapytaj lekarza o aktualne zasady."
+    },
+    {
+     "type": "tip",
+     "title": "Antykoncepcja awaryjna",
+     "html": "Tabletka „po” działa tym lepiej, im szybciej ją przyjmiesz. Zgodnie z obecnymi przepisami wymaga recepty, którą zwykle da się uzyskać po konsultacji z lekarzem, także online."
+    },
+    {
+     "type": "box",
+     "title": "Bez straszenia",
+     "html": "Większość infekcji da się wyleczyć, a pozostałe, jak HIV, można skutecznie kontrolować leczeniem. Im wcześniej się zbadasz, tym łatwiej. To zwykła wizyta u lekarza, a nie powód do wstydu."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Która metoda chroni jednocześnie przed ciążą i przed większością infekcji przenoszonych drogą płciową?",
+     "options": [
+      "Tabletki hormonalne",
+      "Prezerwatywa",
+      "Przerywany stosunek"
+     ],
+     "answer": 1,
+     "explanation": "Tylko prezerwatywa daje obie formy ochrony. Tabletki chronią przed ciążą, ale nie przed STI."
+    },
+    {
+     "q": "Nie mam żadnych objawów. Czy to znaczy, że na pewno nie mam infekcji?",
+     "options": [
+      "Tak, na pewno",
+      "Nie, wiele infekcji długo nie daje objawów",
+      "Tak, jeśli jestem młody lub młoda"
+     ],
+     "answer": 1,
+     "explanation": "Wiele STI przez długi czas jest bezobjawowych, dlatego liczą się badania, a nie samopoczucie."
+    },
+    {
+     "q": "Martwisz się, że mogłeś lub mogłaś złapać infekcję. Co robisz?",
+     "options": [
+      "Czekam, aż samo przejdzie",
+      "Rozmawiam z lekarzem i robię badania",
+      "Pytam na forum o diagnozę"
+     ],
+     "answer": 1,
+     "explanation": "Lekarz może zlecić badania i w razie potrzeby wdrożyć leczenie. Forum nie postawi diagnozy."
+    }
+   ]
+  },
+  {
+   "id": "internet",
+   "title": "Internet i relacje",
+   "icon": "📱",
+   "iconBg": "#DCE8FF",
+   "status": "active",
+   "subtitle": "Granice w sieci, sexting, presja, prywatność",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Internet jest częścią życia, a zasady są te same co poza siecią: szacunek, zgoda i prywatność."
+    },
+    {
+     "type": "key",
+     "title": "Sexting i zdjęcia",
+     "html": "Wysyłając intymne zdjęcie, tracisz kontrolę nad tym, co się z nim stanie. Nikt nie może Cię do tego zmuszać. Rozsyłanie cudzych intymnych zdjęć bez zgody to przemoc, a materiały z udziałem osób poniżej 18 lat są szczególnie chronione prawem. Jeśli ktoś robi to Tobie, to nie Twoja wina: zapisz dowody, zgłoś sprawę na platformie i poproś o pomoc dorosłą osobę lub zadzwoń pod 116 111."
+    },
+    {
+     "type": "box",
+     "title": "Presja",
+     "html": "„Wszyscy to robią” albo „jak mnie kochasz, to wyślesz” to naciski, a nie dowody uczuć. Masz prawo odmówić i nie musisz się tłumaczyć."
+    },
+    {
+     "type": "box",
+     "title": "Prywatność",
+     "html": "Ustaw prywatne konta, nie podawaj obcym adresu ani szkoły i uważaj na osoby, które znasz tylko z sieci. Zdjęcia i rozmowy zostają na długo."
+    },
+    {
+     "type": "tip",
+     "title": "Red i green flagi",
+     "html": "<b>Green flagi:<\/b> ktoś szanuje Twoje „nie”, nie sprawdza Ci telefonu, daje przestrzeń i cieszy się z Twoich sukcesów.<br><b>Red flagi:<\/b> kontrola, szantaż emocjonalny, odcinanie od znajomych, groźby wysłania zdjęć, przesuwanie Twoich granic."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Ktoś nalega: „Jak mnie kochasz, to wyślij zdjęcie”. Co to jest?",
+     "options": [
+      "Normalny dowód uczuć",
+      "Presja, na którą nie musisz się godzić",
+      "Test lojalności, który warto zdać"
+     ],
+     "answer": 1,
+     "explanation": "Miłość nie polega na wymuszaniu. Masz prawo powiedzieć „nie” bez tłumaczenia się."
+    },
+    {
+     "q": "Dostajesz cudze intymne zdjęcie. Co robisz?",
+     "options": [
+      "Wysyłam znajomym",
+      "Nie rozsyłam, usuwam i w razie potrzeby zgłaszam",
+      "Wrzucam na grupę dla żartu"
+     ],
+     "answer": 1,
+     "explanation": "Rozsyłanie cudzych intymnych zdjęć to przemoc. Najlepiej nie przekazywać ich dalej i zgłosić sprawę."
+    },
+    {
+     "q": "Która sytuacja to red flag?",
+     "options": [
+      "Ktoś szanuje Twoje „nie”",
+      "Ktoś sprawdza Ci telefon i złości się, gdy spotykasz znajomych",
+      "Ktoś cieszy się z Twoich sukcesów"
+     ],
+     "answer": 1,
+     "explanation": "Kontrolowanie i izolowanie od znajomych to typowe sygnały ostrzegawcze w relacji."
+    }
+   ]
+  },
+  {
+   "id": "mity",
+   "title": "Mit czy fakt?",
+   "icon": "🔎",
+   "iconBg": "#D9F2FF",
+   "status": "active",
+   "subtitle": "Obalamy popularne mity z sieci i szkoły",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Mity krążą w szkole i w sieci, bo o seksie wiele osób wstydzi się pytać. Sprawdźmy kilka najpopularniejszych."
+    },
+    {
+     "type": "key",
+     "title": "Mit: „Za pierwszym razem nie da się zajść w ciążę”",
+     "html": "<b>Fakt:<\/b> ciąża jest możliwa za każdym razem, także za pierwszym."
+    },
+    {
+     "type": "box",
+     "title": "Mit: „Przerywany stosunek to skuteczna antykoncepcja”",
+     "html": "<b>Fakt:<\/b> to metoda zawodna, z wysokim odsetkiem wpadek. Trudno ją dobrze zastosować."
+    },
+    {
+     "type": "box",
+     "title": "Mit: „Masturbacja szkodzi”",
+     "html": "<b>Fakt:<\/b> nie szkodzi zdrowiu ani płodności. To normalne, prywatne zachowanie."
+    },
+    {
+     "type": "box",
+     "title": "Mit: „Zdrowo wygląda, więc nic nie ma”",
+     "html": "<b>Fakt:<\/b> po wyglądzie nie rozpoznasz infekcji, bo wiele z nich nie daje objawów."
+    },
+    {
+     "type": "tip",
+     "title": "Skąd brać wiarygodne informacje?",
+     "html": "Sprawdzaj, kto jest autorem i czy podaje źródła. Najpewniej to lekarze, poradnie i organizacje zdrowotne. Gdy coś brzmi sensacyjnie albo straszy, zachowaj ostrożność."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Za pierwszym razem nie da się zajść w ciążę.",
+     "options": [
+      "Fakt",
+      "Mit",
+      "Tylko u nastolatek"
+     ],
+     "answer": 1,
+     "explanation": "Mit. Ciąża jest możliwa za każdym razem."
+    },
+    {
+     "q": "Prezerwatywa zmniejsza ryzyko ciąży i większości infekcji.",
+     "options": [
+      "Fakt",
+      "Mit"
+     ],
+     "answer": 0,
+     "explanation": "Fakt. Użyta prawidłowo, jest jedną z najlepszych form ochrony."
+    },
+    {
+     "q": "Masturbacja szkodzi zdrowiu.",
+     "options": [
+      "Fakt",
+      "Mit"
+     ],
+     "answer": 1,
+     "explanation": "Mit. Nie szkodzi zdrowiu ani płodności."
+    },
+    {
+     "q": "Przerywany stosunek jest skuteczną antykoncepcją.",
+     "options": [
+      "Fakt",
+      "Mit"
+     ],
+     "answer": 1,
+     "explanation": "Mit. To metoda zawodna."
+    }
+   ]
+  },
+  {
+   "id": "porno",
+   "title": "Porno vs. Rzeczywistość",
+   "icon": "🎬",
+   "iconBg": "#E8DDFB",
+   "status": "active",
+   "subtitle": "Fikcja kontra prawdziwa bliskość",
+   "time": "ok. 4 min",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Filmy dla dorosłych to fikcja, tak jak filmy akcji. Są przeznaczone dla dorosłych i nie pokazują, jak naprawdę wygląda bliskość, więc nie są dobrym źródłem wiedzy. Nie chodzi o ocenianie, tylko o to, by odróżniać scenariusz od życia."
+    },
+    {
+     "type": "key",
+     "title": "Czego tam nie widać",
+     "html": "Rozmów o zgodzie i granicach, niepewności, śmiechu i pomyłek. Obraz jest wyreżyserowany, dobrany i obrobiony, więc nie pokazuje prawdziwej różnorodności ciał."
+    },
+    {
+     "type": "box",
+     "title": "Ciało i oczekiwania",
+     "html": "Porównywanie się z aktorami i aktorkami może obniżać pewność siebie i tworzyć nierealne oczekiwania wobec siebie i partnera. W prawdziwej bliskości liczy się komfort obu osób."
+    },
+    {
+     "type": "box",
+     "title": "Szacunek i komunikacja",
+     "html": "W prawdziwej relacji pytasz, słuchasz i reagujesz na to, co mówi druga osoba. Nie odgrywasz scenariusza z ekranu."
+    },
+    {
+     "type": "tip",
+     "title": "Gdy to na Ciebie wpływa",
+     "html": "Jeśli oglądanie przeszkadza Ci w codziennym życiu, trudno Ci przestać albo budzi niepokój lub poczucie winy, możesz porozmawiać z zaufaną osobą, psychologiem albo zadzwonić pod 116 111. To nie powód do wstydu."
+    }
+   ],
+   "quiz": [
+    {
+     "q": "Czego zwykle brakuje w filmach dla dorosłych?",
+     "options": [
+      "Rozmowy o zgodzie i granicach",
+      "Oświetlenia",
+      "Muzyki"
+     ],
+     "answer": 0,
+     "explanation": "Zgoda, komunikacja i troska o drugą osobę to podstawa prawdziwej bliskości, a w scenariuszach często ich nie ma."
+    },
+    {
+     "q": "Czy ciała i reakcje z takich filmów są dobrym wzorcem?",
+     "options": [
+      "Tak, tak wygląda norma",
+      "Nie, to wyreżyserowana fikcja",
+      "Tak, jeśli wyglądają naturalnie"
+     ],
+     "answer": 1,
+     "explanation": "To scenariusz, reżyseria i obróbka obrazu. Prawdziwe ciała i reakcje są bardzo różne."
+    },
+    {
+     "q": "Co jest najważniejsze w prawdziwej bliskości?",
+     "options": [
+      "Odegranie scenariusza",
+      "Komfort i zgoda obu osób",
+      "Dorównanie innym"
+     ],
+     "answer": 1,
+     "explanation": "Szacunek, komunikacja i wzajemny komfort."
+    }
+   ]
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Zgoda (consent)",
+   "def": "Dobrowolne, świadome i konkretne „tak”, które można w każdej chwili cofnąć. Brak sprzeciwu to nie zgoda."
+  },
+  {
+   "term": "Granice",
+   "def": "To, co jest dla Ciebie komfortowe, a co nie: fizycznie, emocjonalnie i w internecie. Każdy ma swoje i prawo je zmieniać."
+  },
+  {
+   "term": "Ghosting",
+   "def": "Nagłe zerwanie kontaktu bez wyjaśnienia. Bywa raniące, a szczere „nie chcę dalej” jest uczciwsze."
+  },
+  {
+   "term": "Antykoncepcja",
+   "def": "Metody zapobiegania ciąży, np. prezerwatywa, tabletki, wkładka. Tylko prezerwatywa chroni też przed większością STI."
+  },
+  {
+   "term": "HPV",
+   "def": "Bardzo powszechny wirus brodawczaka ludzkiego. Niektóre typy mogą prowadzić do nowotworów, np. raka szyjki macicy. Chronią szczepienia i badania profilaktyczne."
+  },
+  {
+   "term": "Aseksualność",
+   "def": "Orientacja, w której ktoś nie odczuwa pociągu seksualnego lub odczuwa go rzadko. To nie choroba ani wybór i nie wyklucza potrzeby bliskości."
+  },
+  {
+   "term": "STI",
+   "def": "Infekcje przenoszone drogą płciową, np. chlamydia, HIV, HPV. Często bez objawów, dlatego warto się badać. Większość da się wyleczyć lub kontrolować."
+  },
+  {
+   "term": "Sexting",
+   "def": "Wysyłanie wiadomości lub zdjęć o intymnym charakterze. Tylko za zgodą i ze świadomością ryzyka, bo trudno kontrolować, co stanie się z materiałem."
+  },
+  {
+   "term": "Gaslighting",
+   "def": "Manipulacja, w której ktoś wmawia Ci, że to, co czujesz lub pamiętasz, jest nieprawdą, żebyś zwątpił lub zwątpiła w siebie."
+  },
+  {
+   "term": "Orientacja seksualna",
+   "def": "To, do kogo czujemy pociąg lub zakochanie, np. hetero-, homo- albo biseksualność. Nie jest chorobą ani wyborem."
+  },
+  {
+   "term": "Tożsamość płciowa",
+   "def": "Poczucie, kim się jest pod względem płci. Może, ale nie musi, pokrywać się z płcią przypisaną przy urodzeniu."
+  },
+  {
+   "term": "Red flag",
+   "def": "Sygnał ostrzegawczy w relacji, np. kontrola, szantaż emocjonalny albo ignorowanie Twojego „nie”."
+  }
+ ]
+}
+</script>
+<script>
+var CONTENT=null,cur=0,qi=0,score=0,locked=false;
+var $=function(id){return document.getElementById(id)};
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function show(id){document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});$(id).classList.add('on');window.scrollTo(0,0)}
+document.addEventListener('click',function(e){
+  var g=e.target.closest('[data-go]');if(g){show(g.dataset.go);return}
+  var m=e.target.closest('[data-mod]');if(m&&!m.disabled){openLesson(+m.dataset.mod)}
+});
+
+/* ---- treści z content.json ---- */
+function loadContent(){
+  try{
+    CONTENT=JSON.parse($('content-data').textContent);
+    if(!CONTENT||!Array.isArray(CONTENT.modules))throw new Error('format');
+    renderMenu();renderGloss();
+    var u=CONTENT.surveyUrl,ms=$('menuSurvey');
+    if(u){ms.href=u;ms.hidden=false}else{ms.hidden=true}
+  }catch(err){
+    $('modList').innerHTML='<div class="box"><h3>Nie udało się wczytać treści</h3><p>Odśwież stronę. Jeśli problem wraca, daj nam znać.</p></div>';
+  }
+}
+function renderMenu(){
+  var box=$('modList');box.innerHTML='';
+  CONTENT.modules.forEach(function(m,i){
+    var soon=m.status==='soon',b=document.createElement('button');
+    b.className='mod';
+    if(soon)b.disabled=true;else b.dataset.mod=i;
+    var ic=document.createElement('span');ic.className='ic';ic.style.background=m.iconBg||'var(--line)';ic.textContent=m.icon||'📘';
+    var tx=document.createElement('span'),h=document.createElement('h3'),sm=document.createElement('small');
+    h.textContent='Moduł '+(i+1)+': '+m.title;
+    if(soon){var tg=document.createElement('span');tg.className='tag';tg.textContent='wkrótce';h.appendChild(document.createTextNode(' '));h.appendChild(tg)}
+    sm.textContent=(m.subtitle||'')+(!soon&&m.time?' · '+m.time:'');
+    tx.appendChild(h);tx.appendChild(sm);b.appendChild(ic);b.appendChild(tx);box.appendChild(b);
+  });
+}
+function lessonHTML(blocks){
+  return (blocks||[]).map(function(b){
+    var t=b.title?'<h3>'+esc(b.title)+'</h3>':'';
+    if(b.type==='key')return '<div class="box key">'+t+'<p>'+b.html+'</p></div>';
+    if(b.type==='tip')return '<div class="box tip">'+t+'<p>'+b.html+'</p></div>';
+    if(b.type==='box')return '<div class="box">'+t+'<p>'+b.html+'</p></div>';
+    return '<p>'+b.html+'</p>';
+  }).join('');
+}
+function openLesson(i){
+  cur=i;var m=CONTENT.modules[i];
+  $('lMeta').textContent=m.time||'';
+  $('lTitle').textContent='Moduł '+(i+1)+': '+m.title;
+  $('lBody').innerHTML=lessonHTML(m.lesson);
+  $('toQuiz').style.display=(m.quiz&&m.quiz.length)?'block':'none';
+  show('lesson');
+}
+
+/* ---- quiz ---- */
+$('toQuiz').onclick=function(){qi=0;score=0;show('quiz');renderQ()};
+$('quitQuiz').onclick=function(){show('lesson')};
+function renderQ(){
+  var qs=CONTENT.modules[cur].quiz,q=qs[qi];locked=false;
+  $('prog').style.width=(qi/qs.length*100)+'%';
+  $('qCount').textContent='Pytanie '+(qi+1)+' z '+qs.length;
+  $('qText').textContent=q.q;
+  $('fb').className='fb';$('next').style.display='none';
+  var box=$('qOpts');box.innerHTML='';
+  q.options.forEach(function(t,k){var b=document.createElement('button');b.className='opt';b.textContent=t;b.onclick=function(){answer(k)};box.appendChild(b)});
+}
+function answer(k){
+  if(locked)return;locked=true;
+  var qs=CONTENT.modules[cur].quiz,q=qs[qi],ok=k===q.answer,btns=$('qOpts').children;
+  if(ok)score++;
+  for(var i=0;i<btns.length;i++){
+    if(i===q.answer)btns[i].classList.add('ok');
+    else if(i===k)btns[i].classList.add('no');
+    else btns[i].classList.add('dim');
+  }
+  $('fbH').textContent=ok?'✅ Dokładnie!':'❌ Nie do końca.';
+  $('fbT').textContent=q.explanation||'';
+  $('fb').className='fb show '+(ok?'good':'bad');
+  $('next').textContent=qi===qs.length-1?'Zobacz wynik':'Dalej';
+  $('next').style.display='block';
+  $('prog').style.width=((qi+1)/qs.length*100)+'%';
+}
+$('next').onclick=function(){
+  var n=CONTENT.modules[cur].quiz.length;
+  if(qi<n-1){qi++;renderQ()}else{finish(n)}
+};
+function finish(n){
+  $('rScore').textContent=score+'/'+n;
+  var all=score===n,half=score>=n/2;
+  $('rTitle').textContent=all?'Super robota! 🎉':half?'Dobrze Ci idzie 👍':'Warto wrócić do lekcji 📖';
+  $('rText').textContent=all?'Masz solidną wiedzę z tego modułu. Przejdź do kolejnego.':half?'Większość odpowiedzi jest trafiona. Przejrzyj lekcję jeszcze raz i spróbuj ponownie.':'To nic złego, wiedza przychodzi z czasem. Przeczytaj lekcję jeszcze raz i spróbuj znowu.';
+  var url=CONTENT.surveyUrl;
+  $('surveyBox').hidden=!url;
+  if(url)$('surveyLink').href=url;
+  show('res');
+}
+$('retry').onclick=function(){qi=0;score=0;show('quiz');renderQ()};
+$('themeBtn').onclick=function(){
+  var r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme=dark?'light':'dark';
+};
+function renderGloss(){
+  var q=$('gSearch').value.trim().toLowerCase(),l=$('gList'),n=0;l.innerHTML='';
+  (CONTENT.glossary||[]).slice().sort(function(a,b){return a.term.localeCompare(b.term,'pl')}).forEach(function(g){
+    if(q&&(g.term+' '+g.def).toLowerCase().indexOf(q)<0)return;n++;
+    var d=document.createElement('div'),h=document.createElement('h3'),p=document.createElement('p');
+    d.className='box';h.textContent=g.term;p.textContent=g.def;d.appendChild(h);d.appendChild(p);l.appendChild(d);
+  });
+  $('gEmpty').hidden=n>0;
+}
+$('gSearch').oninput=renderGloss;
+$('qx').onclick=function(){location.replace('https://pl.wikipedia.org/wiki/Wikipedia:Strona_g%C5%82%C3%B3wna')};
+loadContent();
+
+/* ===== PWA ===== */
+var deferredPrompt=null;
+var isStandalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+var isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+
+function makeIcon(size){
+  var c=document.createElement('canvas');c.width=c.height=size;
+  var x=c.getContext('2d'),s=size;
+  x.fillStyle='#2A1442';x.fillRect(0,0,s,s);
+  x.save();x.translate(s/2,s/2);x.rotate(-6*Math.PI/180);
+  var w=s*.5,h=s*.5,r=s*.12,rb=s*.03,l=-w/2,t=-h/2;
+  x.beginPath();
+  x.moveTo(l+r,t);x.arcTo(l+w,t,l+w,t+h,r);x.arcTo(l+w,t+h,l,t+h,r);
+  x.arcTo(l,t+h,l,t,rb);x.arcTo(l,t,l+w,t,r);x.closePath();
+  x.fillStyle='#F0306E';x.fill();
+  x.fillStyle='#fff';x.font='900 '+(s*.3)+'px "Trebuchet MS",Arial,sans-serif';
+  x.textAlign='center';x.textBaseline='middle';x.fillText('S',0,s*.01);
+  x.restore();
+  return c.toDataURL('image/png');
+}
+
+function setupManifest(){
+  if(location.protocol.indexOf('http')!==0)return;
+  try{
+    var i192=makeIcon(192),i512=makeIcon(512);
+    $('ati').href=makeIcon(180);
+    var base=location.origin+location.pathname;
+    var manifest={
+      name:'Seksiaki – edukacja bez tabu',short_name:'Seksiaki',
+      description:'Rzetelna edukacja seksualna dla młodzieży.',
+      lang:'pl',start_url:base,scope:base.replace(/[^\/]*$/,''),
+      display:'standalone',orientation:'portrait',
+      background_color:'#2A1442',theme_color:'#2A1442',
+      icons:[
+        {src:i192,sizes:'192x192',type:'image/png',purpose:'any maskable'},
+        {src:i512,sizes:'512x512',type:'image/png',purpose:'any maskable'}
+      ]
+    };
+    $('mf').href=URL.createObjectURL(new Blob([JSON.stringify(manifest)],{type:'application/manifest+json'}));
+  }catch(err){console.warn('Manifest PWA niedostępny:',err)}
+}
+
+function showInstallBox(){
+  if(isStandalone)return;
+  var box=$('installBox'),txt=$('installTxt'),btn=$('installBtn');
+  if(deferredPrompt){
+    txt.innerHTML='<b>Zainstaluj Seksiaki</b><br>Dodaj aplikację do ekranu głównego telefonu.';
+    btn.hidden=false;box.hidden=false;
+  }else if(isIOS){
+    txt.innerHTML='<b>Dodaj do ekranu głównego</b><br>W Safari dotknij ikony udostępniania, a potem „Do ekranu początkowego”.';
+    btn.hidden=true;box.hidden=false;
+  }
+}
+
+window.addEventListener('beforeinstallprompt',function(e){
+  e.preventDefault();deferredPrompt=e;showInstallBox();
+});
+window.addEventListener('appinstalled',function(){
+  deferredPrompt=null;$('installBox').hidden=true;
+});
+$('installBtn').onclick=function(){
+  if(!deferredPrompt)return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(function(){deferredPrompt=null;$('installBox').hidden=true});
+};
+
+setupManifest();
+showInstallBox();
+</script>
+</body>
+</html>
