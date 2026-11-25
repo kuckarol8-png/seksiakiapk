@@ -99,6 +99,15 @@ a.logo{color:inherit;text-decoration:none}
 @media (max-width:340px){.top .logo .wm{display:none}}
 .share{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--mute);margin-top:16px;line-height:1.4}.share input{margin-top:2px;width:18px;height:18px;flex:none;accent-color:var(--pink)}
 .mod.hl{border-color:var(--pink)}
+.done{display:inline-block;margin-top:6px;font-size:.78rem;font-weight:800;background:var(--mintbg);color:var(--mint);border-radius:99px;padding:2px 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.chip{border:2px solid var(--line);background:var(--card);border-radius:99px;padding:7px 14px;font-size:.85rem;font-weight:700;color:var(--ink)}
+.chip.on{background:var(--pink);border-color:var(--pink);color:#fff}
+.box.recap{background:var(--card);border:2px dashed var(--pink)}
+.box.recap ul{color:var(--ink)}
+.box.recap li{margin-bottom:.3em}
+.prog2{margin:0 0 16px}
+.linkbtn{display:block;margin:12px auto 0;border:0;background:none;color:var(--mute);font-size:.8rem;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -124,6 +133,7 @@ a.logo{color:inherit;text-decoration:none}
   <div class="install" id="installBox" hidden><span class="ic">📲</span><div id="installTxt"></div><button id="installBtn" hidden>Zainstaluj</button></div>
   <h2>Wybierz moduł</h2>
   <p style="color:var(--mute)">Każdy moduł to krótka lekcja i quiz. Zajmie Ci to kilka minut.</p>
+  <div class="prog2"><div class="bar"><div id="progBar"></div></div><p class="meta" id="progTxt" style="margin:0"></p></div>
   <a class="mod hl" id="menuSurvey" target="_blank" rel="noopener noreferrer" hidden><span class="ic" style="background:#F9D9E6">📝</span><span><h3>Powiedz nam, co myślisz</h3><small>Anonimowa ankieta · ok. 1 min</small></span></a>
   <div id="modList"></div>
   <button class="mod" data-go="gloss"><span class="ic" style="background:#FFE9B8">📖</span><span><h3>Seksi-słownik</h3><small>Krótkie wyjaśnienia pojęć, z wyszukiwarką</small></span></button>
@@ -131,6 +141,7 @@ a.logo{color:inherit;text-decoration:none}
   <div class="help"><b>Potrzebujesz z kimś porozmawiać?</b> Telefon zaufania dla dzieci i młodzieży: <b>116 111</b> (bezpłatny). W nagłej sytuacji dzwoń na <b>112</b>.</div>
   <p class="aboutlink"><a href="https://seksiaki.netlify.app/">O projekcie Seksiaki ↗</a></p>
   <label class="share"><input type="checkbox" id="shareChk" checked><span>Pomagaj ulepszać Seksiaki: zapisuj anonimowe wyniki quizów (bez imienia i innych danych osobowych). Możesz to wyłączyć w każdej chwili.</span></label>
+  <button class="linkbtn" id="clrProg" type="button">Wyczyść postęp na tym urządzeniu</button>
 </section>
 
 <section class="view lesson" id="lesson">
@@ -160,7 +171,8 @@ a.logo{color:inherit;text-decoration:none}
     <p style="margin-bottom:14px">Ankieta jest anonimowa i zajmuje około minuty. Dzięki niej Seksiaki będą lepsze.</p>
     <a class="btn mint" id="surveyLink" target="_blank" rel="noopener noreferrer">Powiedz nam, co myślisz – wypełnij anonimową ankietę</a>
   </div>
-  <button class="btn" id="retry">Spróbuj jeszcze raz</button>
+  <button class="btn" id="nextMod" hidden>Kolejny moduł →</button>
+  <button class="btn alt" id="retry">Spróbuj jeszcze raz</button>
   <button class="btn alt" data-go="menu">Wróć do modułów</button>
 </section>
 
@@ -181,6 +193,7 @@ a.logo{color:inherit;text-decoration:none}
   <div class="top"><button class="back" data-go="menu">← Moduły</button></div>
   <h2>Seksi-słownik</h2>
   <input class="search" id="gSearch" type="search" placeholder="Szukaj pojęcia…" autocomplete="off" aria-label="Szukaj pojęcia">
+  <div class="chips" id="gChips"><button class="chip on" data-cat="all" aria-pressed="true">Wszystkie</button><button class="chip" data-cat="relacje" aria-pressed="false">Relacje i zgoda</button><button class="chip" data-cat="cialo" aria-pressed="false">Ciało i zdrowie</button><button class="chip" data-cat="internet" aria-pressed="false">Internet</button></div>
   <div id="gList"></div>
   <p class="meta" id="gEmpty" hidden>Nic nie znaleziono. Spróbuj innego słowa.</p>
 </section>
@@ -188,7 +201,7 @@ a.logo{color:inherit;text-decoration:none}
 </div>
 <script type="application/json" id="content-data">
 {
- "version": 2,
+ "version": 3,
  "surveyUrl": "https://forms.gle/nD8uWP5uZakJE4YSA",
  "modules": [
   {
@@ -266,6 +279,11 @@ a.logo{color:inherit;text-decoration:none}
      "answer": 0,
      "explanation": "Zgoda to wyraźne „tak”, a nie brak „nie”. Bycie w związku niczego tu nie zmienia."
     }
+   ],
+   "recap": [
+    "Zgoda jest dobrowolna, świadoma, konkretna i odwołalna.",
+    "Brak sprzeciwu to nie zgoda. W razie wątpliwości zapytaj.",
+    "„Stop” oznacza stop, w każdej chwili."
    ]
   },
   {
@@ -333,6 +351,11 @@ a.logo{color:inherit;text-decoration:none}
      "answer": 1,
      "explanation": "Pytania i niepokojące objawy są dobrym powodem. Wcześniejsza reakcja zwykle ułatwia leczenie."
     }
+   ],
+   "recap": [
+    "Każde ciało jest inne, a różnorodność jest normą.",
+    "W pierwszych latach po pierwszej miesiączce cykl bywa nieregularny.",
+    "Z pytaniem lub niepokojącym objawem możesz iść do lekarza, nie musisz mieć „poważnego” powodu."
    ]
   },
   {
@@ -400,6 +423,11 @@ a.logo{color:inherit;text-decoration:none}
      "answer": 1,
      "explanation": "Lekarz może zlecić badania i w razie potrzeby wdrożyć leczenie. Forum nie postawi diagnozy."
     }
+   ],
+   "recap": [
+    "Tylko prezerwatywa chroni jednocześnie przed ciążą i większością STI.",
+    "Brak objawów nie oznacza braku infekcji, dlatego badania mają sens.",
+    "Większość infekcji da się wyleczyć lub kontrolować, im wcześniej, tym łatwiej."
    ]
   },
   {
@@ -467,6 +495,11 @@ a.logo{color:inherit;text-decoration:none}
      "answer": 1,
      "explanation": "Kontrolowanie i izolowanie od znajomych to typowe sygnały ostrzegawcze w relacji."
     }
+   ],
+   "recap": [
+    "Nikt nie może Cię zmusić do wysłania zdjęcia.",
+    "Cudzych intymnych zdjęć się nie rozsyła.",
+    "Kontrola i szantaż to red flagi. Pomoc: 116 111."
    ]
   },
   {
@@ -546,6 +579,11 @@ a.logo{color:inherit;text-decoration:none}
      "answer": 1,
      "explanation": "Mit. To metoda zawodna."
     }
+   ],
+   "recap": [
+    "Ciąża jest możliwa za każdym razem, także za pierwszym.",
+    "Po wyglądzie nie poznasz infekcji.",
+    "Sprawdzaj źródła: lekarze, poradnie, organizacje zdrowotne."
    ]
   },
   {
@@ -613,65 +651,305 @@ a.logo{color:inherit;text-decoration:none}
      "answer": 1,
      "explanation": "Szacunek, komunikacja i wzajemny komfort."
     }
+   ],
+   "recap": [
+    "To fikcja i scenariusz, a nie wzór.",
+    "Prawdziwa bliskość to zgoda, rozmowa i komfort obu osób.",
+    "Jeśli to na Ciebie źle wpływa, porozmawiaj z zaufaną osobą lub zadzwoń pod 116 111."
    ]
+  },
+  {
+   "id": "dojrzewanie",
+   "title": "Dojrzewanie i zmiany w ciele",
+   "icon": "🌱",
+   "iconBg": "#E3F6D8",
+   "subtitle": "Co jest normą i dlaczego każdy ma swoje tempo",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Dojrzewanie to czas, gdy ciało i emocje szybko się zmieniają. U każdej osoby wygląda to trochę inaczej i to jest w porządku."
+    },
+    {
+     "type": "key",
+     "title": "Co jest normą",
+     "html": "Zmiany zaczynają się w różnym wieku, najczęściej między 8. a 14. rokiem życia, i trwają kilka lat. Obejmują wzrost, owłosienie, zmianę głosu, rozwój piersi lub jąder, trądzik, większe pocenie się, pierwszą miesiączkę lub pierwsze polucje, a także wahania nastroju."
+    },
+    {
+     "type": "box",
+     "title": "Różne tempo",
+     "html": "Rówieśnicy mogą dojrzewać wcześniej albo później i zwykle nic to nie mówi o zdrowiu. Jeśli masz wrażenie, że zmiany nie zaczęły się mimo upływu lat albo zaczęły się bardzo wcześnie, warto zapytać lekarza."
+    },
+    {
+     "type": "box",
+     "title": "Ciało bez wstydu",
+     "html": "Trądzik, pot, zapach, nowe owłosienie czy zmiana kształtu ciała dotyczą prawie wszystkich. Pomagają higiena, ruch, sen i życzliwość wobec siebie. Retuszowane zdjęcia z sieci nie są dobrym miernikiem normy."
+    },
+    {
+     "type": "tip",
+     "title": "Kiedy zapytać lekarza?",
+     "html": "Gdy coś Cię niepokoi: silny ból, bardzo obfite lub bardzo bolesne miesiączki, brak miesiączki mimo upływu lat, uporczywy trądzik albo nietypowe guzki. Możesz też po prostu zapytać, bo masz wątpliwości."
+    }
+   ],
+   "recap": [
+    "Dojrzewanie zaczyna się i trwa w różnym tempie.",
+    "Trądzik, pot i wahania nastroju to częsta część tego okresu.",
+    "Wątpliwości warto zadać lekarzowi, bez wstydu."
+   ],
+   "quiz": [
+    {
+     "q": "Rówieśnik już urósł i ma zarost, a Ty jeszcze nie. Co to zwykle znaczy?",
+     "options": [
+      "Że coś jest z Tobą nie tak",
+      "Że ludzie dojrzewają w różnym tempie",
+      "Że na pewno jesteś chory lub chora"
+     ],
+     "answer": 1,
+     "explanation": "Tempo dojrzewania jest bardzo indywidualne. Samo bycie „wcześniej” lub „później” zwykle nie jest problemem."
+    },
+    {
+     "q": "Co jest częstą częścią dojrzewania?",
+     "options": [
+      "Trądzik i większe pocenie się",
+      "Brak jakichkolwiek zmian nastroju",
+      "Zmiany tylko u dziewcząt"
+     ],
+     "answer": 0,
+     "explanation": "Trądzik, pot i wahania nastroju dotyczą wielu osób, niezależnie od płci."
+    },
+    {
+     "q": "Czy zdjęcia ciał w mediach społecznościowych są dobrym miernikiem normy?",
+     "options": [
+      "Tak, tak wygląda większość osób",
+      "Nie, bywają retuszowane i starannie dobrane",
+      "Tylko zdjęcia celebrytów"
+     ],
+     "answer": 1,
+     "explanation": "Filtry, pozy i obróbka zmieniają obraz. Prawdziwe ciała są bardzo różne."
+    },
+    {
+     "q": "Kiedy dobrze jest zapytać lekarza?",
+     "options": [
+      "Tylko po wypadku",
+      "Gdy coś Cię niepokoi lub masz pytania",
+      "Nigdy w czasie dojrzewania"
+     ],
+     "answer": 1,
+     "explanation": "Pytania i niepokojące objawy to dobry powód. Nie trzeba czekać, aż będzie „bardzo źle”."
+    }
+   ],
+   "status": "active",
+   "time": "ok. 4 min"
+  },
+  {
+   "id": "relacje",
+   "title": "Pierwsze relacje, emocje i komunikacja",
+   "icon": "💬",
+   "iconBg": "#FFE0E8",
+   "subtitle": "Granice, odrzucenie, zazdrość i presja rówieśników",
+   "lesson": [
+    {
+     "type": "text",
+     "html": "Pierwsze zauroczenia i relacje to dużo emocji. Dobra wiadomość: komunikacji można się uczyć, jak każdej innej umiejętności."
+    },
+    {
+     "type": "key",
+     "title": "Mów o potrzebach i granicach",
+     "html": "Zacznij od „ja”: „Potrzebuję…”, „Nie czuję się komfortowo, kiedy…”. Mów konkretnie, spokojnie i wtedy, gdy oboje macie chwilę. Słuchaj odpowiedzi i pytaj, zamiast zgadywać."
+    },
+    {
+     "type": "box",
+     "title": "Odrzucenie",
+     "html": "Usłyszenie „nie” boli, ale nie znaczy, że jesteś gorszy lub gorsza. Pozwól sobie na smutek, pogadaj z kimś bliskim i uszanuj decyzję drugiej osoby: bez namawiania, wypominania i pisania „jeszcze jednej wiadomości”."
+    },
+    {
+     "type": "box",
+     "title": "Zazdrość",
+     "html": "Zazdrość czuje wiele osób. Problemem jest to, co z nią robimy. Kontrolowanie, sprawdzanie telefonu czy zakazy to nie troska. Lepiej powiedzieć: „Czuję się niepewnie, możemy pogadać?”."
+    },
+    {
+     "type": "tip",
+     "title": "Presja rówieśników",
+     "html": "Możesz powiedzieć „nie” albo „jeszcze nie” i nie musisz się tłumaczyć. Pomaga gotowe zdanie, na przykład „To nie dla mnie, ale spoko”. Jeśli presja jest silna, porozmawiaj z zaufaną osobą lub zadzwoń pod 116 111."
+    }
+   ],
+   "recap": [
+    "Mów o potrzebach od „ja”, spokojnie i konkretnie.",
+    "Odrzucenie boli, ale „nie” trzeba uszanować.",
+    "Kontrola i presja to nie normalna część relacji. Możesz powiedzieć „nie”."
+   ],
+   "quiz": [
+    {
+     "q": "Która wypowiedź jest dobrym sposobem mówienia o granicy?",
+     "options": [
+      "„Jesteś okropny, że tak robisz”",
+      "„Nie czuję się komfortowo, gdy tak robisz. Możemy to zmienić?”",
+      "„Mówię raz i koniec tematu”"
+     ],
+     "answer": 1,
+     "explanation": "Komunikat od „ja”, spokojny i konkretny, ułatwia drugiej osobie zrozumienie."
+    },
+    {
+     "q": "Ktoś odpowiedział „nie, dziękuję” na Twoje zaproszenie. Co robisz?",
+     "options": [
+      "Namawiam, aż się zgodzi",
+      "Szanuję decyzję i daję sobie czas na emocje",
+      "Piszę kolejne wiadomości"
+     ],
+     "answer": 1,
+     "explanation": "Odrzucenie boli, ale „nie” trzeba uszanować. Pomaga rozmowa z kimś bliskim."
+    },
+    {
+     "q": "Czujesz zazdrość. Co jest zdrowym sposobem?",
+     "options": [
+      "Sprawdzić telefon partnera lub partnerki",
+      "Spokojnie powiedzieć, że czujesz się niepewnie, i pogadać",
+      "Zabronić spotykania się ze znajomymi"
+     ],
+     "answer": 1,
+     "explanation": "Rozmowa o uczuciach buduje zaufanie. Kontrola i zakazy je niszczą."
+    },
+    {
+     "q": "Koledzy naciskają, żebyś zrobił lub zrobiła coś, na co nie masz ochoty. Co możesz zrobić?",
+     "options": [
+      "Ulec, żeby uniknąć wyśmiania",
+      "Powiedzieć „nie” bez tłumaczenia się",
+      "Udawać, że się zgadzasz"
+     ],
+     "answer": 1,
+     "explanation": "Masz prawo odmówić. Dobrzy znajomi to uszanują, a gotowe zdanie ułatwia sprawę."
+    }
+   ],
+   "status": "active",
+   "time": "ok. 4 min"
   }
  ],
  "glossary": [
   {
    "term": "Zgoda (consent)",
+   "cat": "relacje",
    "def": "Dobrowolne, świadome i konkretne „tak”, które można w każdej chwili cofnąć. Brak sprzeciwu to nie zgoda."
   },
   {
    "term": "Granice",
+   "cat": "relacje",
    "def": "To, co jest dla Ciebie komfortowe, a co nie: fizycznie, emocjonalnie i w internecie. Każdy ma swoje i prawo je zmieniać."
   },
   {
+   "term": "Asertywność",
+   "cat": "relacje",
+   "def": "Umiejętność mówienia o swoich potrzebach i granicach spokojnie i szczerze, bez agresji i bez uległości."
+  },
+  {
    "term": "Ghosting",
+   "cat": "relacje",
    "def": "Nagłe zerwanie kontaktu bez wyjaśnienia. Bywa raniące, a szczere „nie chcę dalej” jest uczciwsze."
   },
   {
-   "term": "Antykoncepcja",
-   "def": "Metody zapobiegania ciąży, np. prezerwatywa, tabletki, wkładka. Tylko prezerwatywa chroni też przed większością STI."
-  },
-  {
-   "term": "HPV",
-   "def": "Bardzo powszechny wirus brodawczaka ludzkiego. Niektóre typy mogą prowadzić do nowotworów, np. raka szyjki macicy. Chronią szczepienia i badania profilaktyczne."
-  },
-  {
-   "term": "Aseksualność",
-   "def": "Orientacja, w której ktoś nie odczuwa pociągu seksualnego lub odczuwa go rzadko. To nie choroba ani wybór i nie wyklucza potrzeby bliskości."
-  },
-  {
-   "term": "STI",
-   "def": "Infekcje przenoszone drogą płciową, np. chlamydia, HIV, HPV. Często bez objawów, dlatego warto się badać. Większość da się wyleczyć lub kontrolować."
-  },
-  {
-   "term": "Sexting",
-   "def": "Wysyłanie wiadomości lub zdjęć o intymnym charakterze. Tylko za zgodą i ze świadomością ryzyka, bo trudno kontrolować, co stanie się z materiałem."
-  },
-  {
    "term": "Gaslighting",
+   "cat": "relacje",
    "def": "Manipulacja, w której ktoś wmawia Ci, że to, co czujesz lub pamiętasz, jest nieprawdą, żebyś zwątpił lub zwątpiła w siebie."
   },
   {
+   "term": "Red flag",
+   "cat": "relacje",
+   "def": "Sygnał ostrzegawczy w relacji, np. kontrola, szantaż emocjonalny albo ignorowanie Twojego „nie”."
+  },
+  {
+   "term": "Green flag",
+   "cat": "relacje",
+   "def": "Sygnał zdrowej relacji: ktoś szanuje Twoje „nie”, rozmawia o uczuciach, nie kontroluje i cieszy się z Twoich sukcesów."
+  },
+  {
+   "term": "Presja rówieśnicza",
+   "cat": "relacje",
+   "def": "Nacisk grupy, żeby zrobić coś, na co nie masz ochoty, np. „wszyscy już to robili”. Masz prawo się nie zgodzić."
+  },
+  {
    "term": "Orientacja seksualna",
+   "cat": "relacje",
    "def": "To, do kogo czujemy pociąg lub zakochanie, np. hetero-, homo- albo biseksualność. Nie jest chorobą ani wyborem."
   },
   {
+   "term": "Aseksualność",
+   "cat": "relacje",
+   "def": "Orientacja, w której ktoś nie odczuwa pociągu seksualnego lub odczuwa go rzadko. To nie choroba ani wybór i nie wyklucza potrzeby bliskości."
+  },
+  {
    "term": "Tożsamość płciowa",
+   "cat": "relacje",
    "def": "Poczucie, kim się jest pod względem płci. Może, ale nie musi, pokrywać się z płcią przypisaną przy urodzeniu."
   },
   {
-   "term": "Red flag",
-   "def": "Sygnał ostrzegawczy w relacji, np. kontrola, szantaż emocjonalny albo ignorowanie Twojego „nie”."
+   "term": "Antykoncepcja",
+   "cat": "cialo",
+   "def": "Metody zapobiegania ciąży, np. prezerwatywa, tabletki, wkładka. Tylko prezerwatywa chroni też przed większością STI."
+  },
+  {
+   "term": "Prezerwatywa",
+   "cat": "cialo",
+   "def": "Bariera chroniąca przed ciążą i większością STI, jeśli jest prawidłowo założona od początku i użyta za każdym razem."
+  },
+  {
+   "term": "HPV",
+   "cat": "cialo",
+   "def": "Bardzo powszechny wirus brodawczaka ludzkiego. Niektóre typy mogą prowadzić do nowotworów, np. raka szyjki macicy. Chronią szczepienia i badania profilaktyczne."
+  },
+  {
+   "term": "STI",
+   "cat": "cialo",
+   "def": "Infekcje przenoszone drogą płciową, np. chlamydia, HIV, HPV. Często bez objawów, dlatego warto się badać. Większość da się wyleczyć lub kontrolować."
+  },
+  {
+   "term": "Dojrzewanie",
+   "cat": "cialo",
+   "def": "Okres, w którym ciało zmienia się z dziecięcego na dorosłe: wzrost, owłosienie, głos, miesiączka, polucje. Zaczyna się i trwa w różnym tempie."
+  },
+  {
+   "term": "Cykl miesiączkowy",
+   "cat": "cialo",
+   "def": "Powtarzający się cykl zmian w ciele, którego widocznym elementem jest miesiączka. W pierwszych latach często jest nieregularny."
+  },
+  {
+   "term": "Polucja",
+   "cat": "cialo",
+   "def": "Samoistny wytrysk nasienia, np. w nocy. To normalna część dojrzewania chłopców."
+  },
+  {
+   "term": "Obraz ciała",
+   "cat": "cialo",
+   "def": "To, jak widzisz i oceniasz własne ciało. Porównywanie się z retuszowanymi zdjęciami może go zaniżać. Każde ciało jest inne."
+  },
+  {
+   "term": "Sexting",
+   "cat": "internet",
+   "def": "Wysyłanie wiadomości lub zdjęć o intymnym charakterze. Tylko za zgodą i ze świadomością ryzyka, bo trudno kontrolować, co stanie się z materiałem."
+  },
+  {
+   "term": "Grooming",
+   "cat": "internet",
+   "def": "Budowanie zaufania przez dorosłego, by nawiązać nieodpowiednią relację z młodą osobą. Sygnały: prośby o tajemnicę, o zdjęcia, odsuwanie od bliskich. Powiedz zaufanej osobie lub zadzwoń pod 116 111."
+  },
+  {
+   "term": "Sekstorsja",
+   "cat": "internet",
+   "def": "Groźby opublikowania intymnych zdjęć, by coś wymusić. To nie Twoja wina. Nie płać i nie wysyłaj więcej, zachowaj dowody, zgłoś sprawę i powiedz zaufanej osobie lub zadzwoń pod 116 111."
   }
  ]
 }
 </script>
 <script>
-var CONTENT=null,cur=0,qi=0,score=0,locked=false,picks=[];
+var CONTENT=null,cur=0,qi=0,score=0,locked=false,picks=[],nextIdx=-1;
 /* zapis anonimowych wyników quizów do Formularza Google */
 var SUBMIT={url:'https://docs.google.com/forms/d/e/1FAIpQLSfdsmBHGza-oLswslIgTRMVcCUNOOowOr3qvQS-ojGbe2IsiA/formResponse',mod:'entry.969640022',score:'entry.664358652',ans:'entry.1976522759'};
+function getProg(){try{return JSON.parse(localStorage.getItem('sk_prog'))||{}}catch(e){return {}}}
+function saveProg(id,s,n){try{var p=getProg(),o=p[id];if(!o||s/n>=o.s/o.n)p[id]={s:s,n:n};localStorage.setItem('sk_prog',JSON.stringify(p))}catch(e){}}
+function renderProg(){
+  if(!CONTENT)return;
+  var p=getProg(),tot=0,dn=0;
+  CONTENT.modules.forEach(function(m){if(m.status!=='soon'&&m.quiz&&m.quiz.length){tot++;if(p[m.id])dn++}});
+  $('progBar').style.width=(tot?dn/tot*100:0)+'%';
+  $('progTxt').textContent='Ukończone moduły: '+dn+' z '+tot+' · postęp zapisuje się tylko na tym telefonie';
+}
 function shareOn(){try{return localStorage.getItem('sk_share')!=='0'}catch(e){return true}}
 function setShare(v){try{localStorage.setItem('sk_share',v?'1':'0')}catch(e){}}
 function sendResult(n){
@@ -687,7 +965,7 @@ function sendResult(n){
 }
 var $=function(id){return document.getElementById(id)};
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function show(id){document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});$(id).classList.add('on');window.scrollTo(0,0)}
+function show(id){document.querySelectorAll('.view').forEach(function(v){v.classList.remove('on')});$(id).classList.add('on');window.scrollTo(0,0);if(id==='menu'&&CONTENT){renderMenu();renderProg()}}
 document.addEventListener('click',function(e){
   var g=e.target.closest('[data-go]');if(g){show(g.dataset.go);return}
   var m=e.target.closest('[data-mod]');if(m&&!m.disabled){openLesson(+m.dataset.mod)}
@@ -698,7 +976,7 @@ function loadContent(){
   try{
     CONTENT=JSON.parse($('content-data').textContent);
     if(!CONTENT||!Array.isArray(CONTENT.modules))throw new Error('format');
-    renderMenu();renderGloss();
+    renderMenu();renderGloss();renderProg();
     var u=CONTENT.surveyUrl,ms=$('menuSurvey');
     if(u){ms.href=u;ms.hidden=false}else{ms.hidden=true}
   }catch(err){
@@ -716,7 +994,10 @@ function renderMenu(){
     h.textContent='Moduł '+(i+1)+': '+m.title;
     if(soon){var tg=document.createElement('span');tg.className='tag';tg.textContent='wkrótce';h.appendChild(document.createTextNode(' '));h.appendChild(tg)}
     sm.textContent=(m.subtitle||'')+(!soon&&m.time?' · '+m.time:'');
-    tx.appendChild(h);tx.appendChild(sm);b.appendChild(ic);b.appendChild(tx);box.appendChild(b);
+    tx.appendChild(h);tx.appendChild(sm);
+    var pr=getProg()[m.id];
+    if(pr&&!soon){var dn=document.createElement('span');dn.className='done';dn.textContent='✓ Ukończono · '+pr.s+'/'+pr.n;tx.appendChild(document.createElement('br'));tx.appendChild(dn)}
+    b.appendChild(ic);b.appendChild(tx);box.appendChild(b);
   });
 }
 function lessonHTML(blocks){
@@ -728,11 +1009,14 @@ function lessonHTML(blocks){
     return '<p>'+b.html+'</p>';
   }).join('');
 }
+function recapHTML(r){
+  return (r&&r.length)?'<div class="box recap"><h3>⏱️ Zapamiętaj w 30 sekund</h3><ul>'+r.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>':'';
+}
 function openLesson(i){
   cur=i;var m=CONTENT.modules[i];
   $('lMeta').textContent=m.time||'';
   $('lTitle').textContent='Moduł '+(i+1)+': '+m.title;
-  $('lBody').innerHTML=lessonHTML(m.lesson);
+  $('lBody').innerHTML=lessonHTML(m.lesson)+recapHTML(m.recap);
   $('toQuiz').style.display=(m.quiz&&m.quiz.length)?'block':'none';
   show('lesson');
 }
@@ -772,6 +1056,10 @@ $('next').onclick=function(){
 };
 function finish(n){
   var sent=sendResult(n);
+  saveProg(CONTENT.modules[cur].id,score,n);
+  nextIdx=-1;
+  for(var i=cur+1;i<CONTENT.modules.length;i++){var mm=CONTENT.modules[i];if(mm.status!=='soon'&&mm.quiz&&mm.quiz.length){nextIdx=i;break}}
+  $('nextMod').hidden=nextIdx<0;
   $('shareNote').textContent=sent?'Anonimowy wynik tego quizu został zapisany, żeby ulepszać treści. Możesz to wyłączyć w menu.':'';
   $('rScore').textContent=score+'/'+n;
   var all=score===n,half=score>=n/2;
@@ -787,9 +1075,11 @@ $('themeBtn').onclick=function(){
   var r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
   r.dataset.theme=dark?'light':'dark';
 };
+var gCat='all';
 function renderGloss(){
   var q=$('gSearch').value.trim().toLowerCase(),l=$('gList'),n=0;l.innerHTML='';
   (CONTENT.glossary||[]).slice().sort(function(a,b){return a.term.localeCompare(b.term,'pl')}).forEach(function(g){
+    if(gCat!=='all'&&g.cat!==gCat)return;
     if(q&&(g.term+' '+g.def).toLowerCase().indexOf(q)<0)return;n++;
     var d=document.createElement('div'),h=document.createElement('h3'),p=document.createElement('p');
     d.className='box';h.textContent=g.term;p.textContent=g.def;d.appendChild(h);d.appendChild(p);l.appendChild(d);
@@ -797,6 +1087,13 @@ function renderGloss(){
   $('gEmpty').hidden=n>0;
 }
 $('gSearch').oninput=renderGloss;
+$('gChips').onclick=function(e){
+  var b=e.target.closest('.chip');if(!b)return;gCat=b.dataset.cat;
+  [].forEach.call($('gChips').children,function(c){c.classList.toggle('on',c===b);c.setAttribute('aria-pressed',c===b?'true':'false')});
+  renderGloss();
+};
+$('nextMod').onclick=function(){if(nextIdx>=0)openLesson(nextIdx)};
+$('clrProg').onclick=function(){if(confirm('Wyczyścić postęp na tym urządzeniu?')){try{localStorage.removeItem('sk_prog')}catch(e){}renderMenu();renderProg()}};
 $('qx').onclick=function(){location.replace('https://www.google.com/')};
 $('shareChk').checked=shareOn();
 $('shareChk').onchange=function(){setShare(this.checked)};
